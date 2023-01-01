@@ -6,18 +6,35 @@
     "apps/*",
     "packages/*"
   ],
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
+  },
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "build:ecommerce": "turbo run build --filter=@ecommerce/storefront",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +"
+    "prepare": "husky install",
+    "commit": "./node_modules/cz-customizable/standalone.js",
+    "clean": "pnpm clean:node-modules & pnpm clean:next-cache & pnpm clean:turbo-cache",
+    "clean:node-modules": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' +",
+    "clean:next-cache": "find . -name '.next' -type d -prune -exec rm -rf '{}' +",
+    "clean:turbo-cache": "rm -rf ./node_modules/.cache"
   },
-  "dependencies": {},
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
+    "cz-customizable": "^7.0.0",
+    "eslint": "^8.31.0",
     "eslint-config-ecommerce": "workspace:*",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.4",
     "turbo": "^1.6.3"
   },
   "engines": {

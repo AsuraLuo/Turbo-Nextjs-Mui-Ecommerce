@@ -24,6 +24,23 @@
     "clean:next-cache": "find . -name '.next' -type d -prune -exec rm -rf '{}' +",
     "clean:turbo-cache": "rm -rf ./node_modules/.cache"
   },
+  "dependencies": {
+    "@emotion/cache": "^11.10.5",
+    "@emotion/react": "^11.10.5",
+    "@emotion/server": "^11.10.0",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.11.0",
+    "@mui/lab": "5.0.0-alpha.114",
+    "@mui/material": "^5.11.2",
+    "@mui/styles": "^5.11.2",
+    "@reduxjs/toolkit": "^1.9.1",
+    "clsx": "^1.2.1",
+    "lodash": "^4.17.21",
+    "notistack": "^2.0.8",
+    "react-helmet": "^6.1.0",
+    "react-intl": "^6.2.5",
+    "react-redux": "^8.0.5"
+  },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
@@ -33,8 +50,10 @@
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",
-    "stylelint": "^14.16.1",
-    "stylelint-config-prettier": "^9.0.4",
+    "stylelint": "^13.8.0",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-order": "^4.1.0",
     "turbo": "^1.6.3"
   },
   "engines": {

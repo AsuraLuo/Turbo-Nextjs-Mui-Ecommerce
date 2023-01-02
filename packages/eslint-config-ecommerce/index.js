@@ -3,10 +3,9 @@ module.exports = {
     node: true
   },
   extends: [
-    'next',
-    'turbo',
     'eslint:recommended',
     'airbnb',
+    'next',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended'
   ],
@@ -41,6 +40,7 @@ module.exports = {
       }
     ],
     'react/function-component-definition': 0,
+    'react/no-danger': 0,
     'react/jsx-filename-extension': [
       0,
       {
@@ -51,7 +51,9 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react/require-default-props': 0,
     '@typescript-eslint/no-explicit-any': 0,
+    '@typescript-eslint/no-empty-interface': 0,
+    '@typescript-eslint/no-inferrable-types': 0,
     '@typescript-eslint/no-var-requires': 0,
     '@typescript-eslint/no-unused-vars': 'error'
-  },
-};
+  }
+}

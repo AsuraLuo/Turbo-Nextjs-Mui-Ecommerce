@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { css, Global } from '@emotion/react'
 
 const GlobalStyles = css`
-  @font-face {
+  /* @font-face {
     font-family: 'karla';
     font-weight: normal;
     src: local('karla'), local('karla'), url('/fonts/karla.otf');
@@ -11,7 +11,7 @@ const GlobalStyles = css`
       local('karla'), url('/fonts/karla.woff') format('woff'), local('karla'),
       local('karla'), url('/fonts/karla.ttf') format('truetype');
     font-display: swap;
-  }
+  } */
 
   h1,
   h2,

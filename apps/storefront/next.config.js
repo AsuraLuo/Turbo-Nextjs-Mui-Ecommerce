@@ -1,5 +1,4 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')
-const withTranspileModules = require('next-transpile-modules')
 
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
 
@@ -14,13 +13,14 @@ module.exports = () => {
     distDir: '.next',
     generateEtags: false,
     pageExtensions: ['tsx', 'ts'],
+    transpilePackages: ['@ecommerce/ui'],
     webpack: (config) => {
       // Important: return the modified config
       return config
     }
   }
 
-  const plugins = [withTranspileModules(['@ecommerce/ui'])]
+  const plugins = []
 
   if (isAnalyzer)
     plugins.push(

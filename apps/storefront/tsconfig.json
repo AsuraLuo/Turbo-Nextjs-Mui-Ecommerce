@@ -1,5 +1,17 @@
 {
   "extends": "@ecommerce/tsconfig/nextjs.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@config/*": ["config/*"],
+      "@graphql/*": ["graphql/*"],
+      "@hooks/*": ["hooks/*"],
+      "@provider/*": ["provider/*"],
+      "@ecommerce/*": ["packages/*"],
+      "@store/*": ["store/*"]
+    }
+  },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }

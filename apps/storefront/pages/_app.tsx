@@ -49,11 +49,7 @@ const App = ({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-tap-highlight" content="no" />
         <link rel="dns-prefetch" href={process.env.API_URL} />
-        <link
-          rel="preconnect"
-          href={process.env.API_URL}
-          cross-origin="crossorigin"
-        />
+        <link rel="preconnect" href={process.env.API_URL} />
       </Head>
       <ReduxProvider store={reduxStore}>
         <SnackbarProvider

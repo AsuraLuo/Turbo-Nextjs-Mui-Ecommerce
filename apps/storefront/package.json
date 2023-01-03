@@ -6,15 +6,24 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "nodemon",
+    "build": "next build && tsc --project tsconfig.server.json",
+    "start": "cross-env NODE_ENV=production node dist/server.js",
+    "next:dev": "next dev",
+    "next:build": "next build",
+    "next:start": "next start",
+    "lint": "next lint",
+    "stop:ecommerce": "./node_modules/pm2/bin/pm2 stop all",
+    "delete:ecommerce": "./node_modules/pm2/bin/pm2 delete all",
+    "deploy:ecommerce": "./node_modules/pm2/bin/pm2 reload pm2.config.js"
   },
   "dependencies": {
     "@ecommerce/hooks": "workspace:*",
     "@ecommerce/ui": "workspace:*",
+    "cross-env": "^7.0.3",
+    "http-proxy-middleware": "^2.0.6",
     "next": "^13.1.1",
+    "pm2": "^5.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "redux-logger": "^3.0.6"
@@ -28,6 +37,8 @@
     "@types/react-dom": "^18.0.10",
     "eslint": "^7.32.0",
     "eslint-config-ecommerce": "workspace:*",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
     "typescript": "^4.5.3"
   }
 }

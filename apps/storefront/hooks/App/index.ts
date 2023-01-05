@@ -1,0 +1,1 @@
+export { fetchApp } from './fetchApp'

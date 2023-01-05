@@ -3,9 +3,11 @@ import { AppProps } from 'next/app'
 import { Provider as ReduxProvider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
 import { EmotionCache } from '@emotion/react'
+import { isEmpty } from 'lodash'
 
 import { createEmotionCache } from '@ecommerce/hooks'
-import { withRedux } from '@provider/redux'
+import { withRedux, LocaleContextProvider } from '@provider/index'
+import { fetchApp } from '@hooks/App'
 
 import AppShell from '@components/AppShell'
 
@@ -57,9 +59,11 @@ const App = ({
           autoHideDuration={5000}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <AppShell cache={emotionCache}>
-            <Component {...pageProps} />
-          </AppShell>
+          <LocaleContextProvider>
+            <AppShell cache={emotionCache}>
+              <Component {...pageProps} />
+            </AppShell>
+          </LocaleContextProvider>
         </SnackbarProvider>
       </ReduxProvider>
     </>
@@ -67,8 +71,10 @@ const App = ({
 }
 
 App.getInitialProps = async ({ Component, ctx }: InitialPage) => {
-  // const { reduxStore } = ctx
-  // const state = reduxStore.getState()
+  const { reduxStore } = ctx
+  const state = reduxStore.getState()
+
+  if (isEmpty(state.i18n.languages)) await fetchApp(ctx)
 
   const pageProps = Component.getInitialProps
     ? await Component.getInitialProps({ ...ctx })

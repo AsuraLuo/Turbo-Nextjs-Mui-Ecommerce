@@ -4,7 +4,7 @@ import { CacheProvider } from '@emotion/react'
 import { useSnackbar } from 'notistack'
 
 import { theme } from '@config/theme'
-import { CssBaseline } from '@ecommerce/ui'
+import { CssBaseline, CurrentLocale } from '@ecommerce/ui'
 
 import GlobalStyled from '@components/GlobalStyled'
 
@@ -34,7 +34,7 @@ const AppShell: FC<AppShellProps> = ({ children, cache }) => {
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {/* <CurrentLocale /> */}
+        <CurrentLocale />
         <GlobalStyled />
         <main>{children}</main>
       </ThemeProvider>

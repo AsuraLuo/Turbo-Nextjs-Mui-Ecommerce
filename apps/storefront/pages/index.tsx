@@ -1,8 +1,8 @@
 import Head from 'next/head'
 
-import { Button } from '@ecommerce/ui'
+import { Button, I18n } from '@ecommerce/ui'
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <Head>
@@ -12,8 +12,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Button type="button">Button</Button>
+        <Button type="button">
+          <I18n id="global.addToCart" />
+        </Button>
       </main>
     </>
   )
 }
+
+export default Home

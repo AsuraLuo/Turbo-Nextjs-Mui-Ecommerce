@@ -1,7 +1,4 @@
-import Head from "next/head";
-import { Inter } from "@next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import Head from 'next/head'
 
 export default function Cart() {
   return (
@@ -14,5 +11,5 @@ export default function Cart() {
       </Head>
       <p>Cart Page</p>
     </>
-  );
+  )
 }

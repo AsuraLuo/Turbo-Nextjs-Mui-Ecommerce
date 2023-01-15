@@ -1,9 +1,9 @@
 import fs from 'fs'
 import next from 'next'
-import spdy from 'spdy'
 import Koa from 'koa'
 import Router from '@koa/router'
 import { parse } from 'url'
+import { createServer } from 'spdy'
 
 const port = parseInt(process.env.PORT || '3000', 10)
 const dev = process.env.NODE_ENV !== 'production'
@@ -34,7 +34,9 @@ app.prepare().then(() => {
   })
 
   // start the HTTP/2 server with koa
-  spdy.createServer(options, server.callback()).listen(port, (error: any) => {
+  const httpServer: any = createServer(options, server.callback())
+
+  httpServer.listen(port, (error: any) => {
     if (error) {
       console.error(error)
       return process.exit(1)

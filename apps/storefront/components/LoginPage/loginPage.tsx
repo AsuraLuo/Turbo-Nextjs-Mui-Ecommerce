@@ -17,6 +17,7 @@ const LoginPage = () => {
     control,
     errors,
     loading,
+    getValues,
     setValue,
     trigger,
     handleFormSubmit,
@@ -91,6 +92,8 @@ const LoginPage = () => {
           required
           control={control}
           errors={errors}
+          getValues={getValues}
+          setValue={setValue}
         />
         <LoadingButton
           type="submit"

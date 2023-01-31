@@ -7,6 +7,7 @@ export const useLoginPage = () => {
   const {
     control,
     formState: { errors },
+    getValues,
     setValue,
     trigger,
     handleSubmit
@@ -71,6 +72,7 @@ export const useLoginPage = () => {
     control,
     errors,
     loading,
+    getValues,
     setValue,
     trigger,
     handleFormSubmit,

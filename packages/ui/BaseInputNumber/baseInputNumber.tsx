@@ -16,6 +16,8 @@ interface BaseInputNumberProps extends StandardTextFieldProps {
   validate?: any
   control: any
   errors: FieldErrors
+  getValues: Function
+  setValue: Function
 }
 
 const BaseInputNumber: FC<BaseInputNumberProps> = ({
@@ -24,9 +26,11 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
   name,
   defaultValue,
   allowArrow = false,
-  fullWidth = true,
+  fullWidth = false,
   required = false,
   validate,
+  getValues,
+  setValue,
   ...rest
 }: any) => {
   delete rest?.label
@@ -57,6 +61,7 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
       ? ['KeyE', 'Period']
       : ['ArrowUp', 'ArrowDown', 'KeyE', 'Period']
 
+    if (event.code === 'Minus') event.preventDefault()
     if (keys.indexOf(event.code) > -1) {
       const elemTarget: any = event.target
       const value: number = Number(elemTarget.value)
@@ -69,12 +74,22 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
     ;(event.target as HTMLElement).blur()
   }
 
+  const handleNumberReduce = () => {
+    const quantity: number = Number(getValues(name))
+    if (quantity > 1) setValue(name, quantity - 1)
+  }
+
+  const handleNumberIncrease = () => {
+    const quantity: number = Number(getValues(name))
+    setValue(name, quantity + 1)
+  }
+
   return (
     <Controller
       {...controllerProps}
       render={({ field }) => (
         <StyleInputNumber>
-          <Button variant="contained">
+          <Button variant="contained" onClick={handleNumberReduce}>
             <RemoveIcon fontSize="small" />
           </Button>
           <TextField
@@ -87,7 +102,7 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
             onKeyDown={handleNumberInputKeyDown}
             onWheel={handleNumberInputWheel}
           />
-          <Button variant="contained">
+          <Button variant="contained" onClick={handleNumberIncrease}>
             <AddIcon fontSize="small" />
           </Button>
         </StyleInputNumber>

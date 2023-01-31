@@ -16,7 +16,8 @@ export const useLoginPage = () => {
       password: '',
       option: '',
       radio: '',
-      checkbox: false
+      checkbox: false,
+      quantity: 1
     }
   })
   const [loading, setLoading] = useState<boolean>(false)

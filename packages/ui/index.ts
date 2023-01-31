@@ -1,4 +1,5 @@
 import BaseCheckbox from './BaseCheckbox'
+import BaseInputNumber from './BaseInputNumber'
 import BasePassword from './BasePassword'
 import BaseRadioGroup from './BaseRadioGroup'
 import BaseSelect from './BaseSelect'
@@ -11,6 +12,7 @@ import LoadingButton from './LoadingButton'
 
 export {
   BaseCheckbox,
+  BaseInputNumber,
   BasePassword,
   BaseRadioGroup,
   BaseSelect,

@@ -1,5 +1,6 @@
 import {
   BaseCheckbox,
+  BaseInputNumber,
   BaseTextField,
   BasePassword,
   BaseRadioGroup,
@@ -84,6 +85,13 @@ const LoginPage = () => {
             trigger={trigger}
           />
         </div>
+        <BaseInputNumber
+          name="quantity"
+          label="Quantity"
+          required
+          control={control}
+          errors={errors}
+        />
         <LoadingButton
           type="submit"
           variant="contained"

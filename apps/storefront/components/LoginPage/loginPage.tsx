@@ -1,9 +1,11 @@
 import {
   BaseCheckbox,
+  BaseFileUpload,
   BaseInputNumber,
   BaseTextField,
   BasePassword,
   BaseRadioGroup,
+  BaseSwatchRadio,
   BaseSelect,
   LoadingButton
 } from '@ecommerce/ui'
@@ -17,27 +19,16 @@ const LoginPage = () => {
     control,
     errors,
     loading,
+    options,
+    swatchOptions,
     getValues,
     setValue,
     trigger,
     handleFormSubmit,
+    handleOptionChange,
     handleValidEmail,
     handleValidPassword
   } = useLoginPage()
-  const options = [
-    {
-      label: 'Angular',
-      value: 'angular'
-    },
-    {
-      label: 'React',
-      value: 'react'
-    },
-    {
-      label: 'Vue',
-      value: 'vue'
-    }
-  ]
 
   return (
     <StyledLoginPage>
@@ -95,6 +86,21 @@ const LoginPage = () => {
           getValues={getValues}
           setValue={setValue}
         />
+        {swatchOptions.map((option) => {
+          return (
+            <BaseSwatchRadio
+              key={option.value}
+              name={option.value}
+              label={option.label}
+              required
+              options={option.options}
+              control={control}
+              errors={errors}
+              handleOptionChange={handleOptionChange}
+            />
+          )
+        })}
+        <BaseFileUpload name="upload" label="Upload" setValue={setValue} />
         <LoadingButton
           type="submit"
           variant="contained"

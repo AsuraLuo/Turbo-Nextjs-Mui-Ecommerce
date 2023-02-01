@@ -18,10 +18,68 @@ export const useLoginPage = () => {
       option: '',
       radio: '',
       checkbox: false,
-      quantity: 1
+      quantity: 1,
+      color: '',
+      size: ''
     }
   })
   const [loading, setLoading] = useState<boolean>(false)
+
+  const options = [
+    {
+      label: 'Angular',
+      value: 'angular'
+    },
+    {
+      label: 'React',
+      value: 'react'
+    },
+    {
+      label: 'Vue',
+      value: 'vue'
+    }
+  ]
+
+  const swatchOptions: any[] = [
+    {
+      label: 'Select Color',
+      value: 'color',
+      options: [
+        {
+          label: 'Black',
+          value: 'blank',
+          url: 'https://us.olicdn.com/image/bk-11s5hv.jpg@40w_40h_50q.webp'
+        },
+        {
+          label: 'Desert Tan',
+          value: 'desert_tan',
+          url: 'https://us.olicdn.com/image/dt-truoaw.jpg@40w_40h_50q.webp'
+        }
+      ]
+    },
+    {
+      label: 'Select Size',
+      value: 'size',
+      options: [
+        {
+          label: '200x30x30',
+          value: '200x30x30'
+        },
+        {
+          label: '200x30x60',
+          value: '200x30x60'
+        },
+        {
+          label: '200x30x90',
+          value: '200x30x90'
+        }
+      ]
+    }
+  ]
+
+  const handleOptionChange = (params: any) => {
+    console.info(params)
+  }
 
   const handleValidEmail = (value: string) => {
     const regexp: RegExp =
@@ -72,9 +130,12 @@ export const useLoginPage = () => {
     control,
     errors,
     loading,
+    options,
+    swatchOptions,
     getValues,
     setValue,
     trigger,
+    handleOptionChange,
     handleFormSubmit,
     handleValidEmail,
     handleValidPassword

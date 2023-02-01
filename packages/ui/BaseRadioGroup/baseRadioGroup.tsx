@@ -13,7 +13,7 @@ import {
 
 import { formatMessage } from '../CurrentLocale'
 
-type Option = {
+interface Option {
   label: string
   value: string
 }

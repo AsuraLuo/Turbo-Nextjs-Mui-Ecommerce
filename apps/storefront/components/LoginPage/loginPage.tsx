@@ -81,6 +81,8 @@ const LoginPage = () => {
           name="quantity"
           label="Quantity"
           required
+          step={5}
+          max={40}
           control={control}
           errors={errors}
           getValues={getValues}

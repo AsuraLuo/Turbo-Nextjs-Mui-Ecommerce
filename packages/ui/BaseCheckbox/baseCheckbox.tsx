@@ -51,11 +51,11 @@ const BaseCheckbox: FC<BaseCheckboxProps> = ({
     ...rest
   }
 
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const elemTarget: any = e.target
+  const handleOnChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const elemTarget: HTMLInputElement = event.target as HTMLInputElement
     setValue(name, elemTarget.checked)
     trigger([name])
-    if (onChange) onChange(e, elemTarget.checked)
+    if (onChange) onChange(event, elemTarget.checked)
   }
 
   return (

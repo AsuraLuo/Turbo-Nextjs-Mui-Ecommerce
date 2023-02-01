@@ -40,6 +40,7 @@
     "lodash": "^4.17.21",
     "notistack": "^2.0.8",
     "react-helmet": "^6.1.0",
+    "react-hook-form": "^7.43.0",
     "react-intl": "^6.2.5",
     "react-redux": "^8.0.5"
   },

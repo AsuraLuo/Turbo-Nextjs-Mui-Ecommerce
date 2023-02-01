@@ -50,6 +50,7 @@ const App = ({
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-tap-highlight" content="no" />
+        <link rel="icon" href="/favicon.ico" />
         <link rel="dns-prefetch" href={process.env.API_URL} />
         <link rel="preconnect" href={process.env.API_URL} />
       </Head>

@@ -1,5 +1,6 @@
 import {
   BaseCheckbox,
+  BaseFileUpload,
   BaseInputNumber,
   BaseTextField,
   BasePassword,
@@ -95,6 +96,7 @@ const LoginPage = () => {
           getValues={getValues}
           setValue={setValue}
         />
+        <BaseFileUpload name="upload" label="Upload" setValue={setValue} />
         <LoadingButton
           type="submit"
           variant="contained"

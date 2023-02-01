@@ -16,20 +16,21 @@ import { formatMessage } from '../CurrentLocale'
 interface Option {
   label: string
   value: string
+  url?: string
 }
 
-interface BaseRadioGroupProps extends RadioGroupProps {
+interface BaseSwatchRadioProps extends RadioGroupProps {
   control: any
   errors: FieldErrors
-  name: string
   label?: string
+  name: string
   options: Array<Option>
   required?: boolean
   validate?: any
   radioProps?: RadioProps
 }
 
-const BaseRadioGroup: FC<BaseRadioGroupProps> = ({
+const BaseSwatchRadio: FC<BaseSwatchRadioProps> = ({
   control,
   errors,
   name,
@@ -86,4 +87,4 @@ const BaseRadioGroup: FC<BaseRadioGroupProps> = ({
   )
 }
 
-export default BaseRadioGroup
+export default BaseSwatchRadio

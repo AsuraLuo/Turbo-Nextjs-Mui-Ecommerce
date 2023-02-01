@@ -10,6 +10,9 @@ import { StyleInputNumber } from './styled'
 interface BaseInputNumberProps extends StandardTextFieldProps {
   name: string
   defaultValue?: string
+  min?: number
+  max?: number
+  step?: number
   allowArrow?: boolean
   fullWidth?: boolean
   required?: boolean
@@ -25,6 +28,9 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
   errors,
   name,
   defaultValue,
+  min = 1,
+  max = 99999,
+  step = 1,
   allowArrow = false,
   fullWidth = false,
   required = false,
@@ -56,32 +62,43 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
     ...rest
   }
 
-  const handleNumberInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
-    const keys = allowArrow
-      ? ['KeyE', 'Period']
-      : ['ArrowUp', 'ArrowDown', 'KeyE', 'Period']
-
-    if (event.code === 'Minus') event.preventDefault()
-    if (keys.indexOf(event.code) > -1) {
-      const elemTarget: any = event.target
-      const value: number = Number(elemTarget.value)
-
-      if (value <= 1 && event.code === 'ArrowDown') event.preventDefault()
-    }
-  }
-
   const handleNumberInputWheel = (event: WheelEvent<HTMLInputElement>) => {
     ;(event.target as HTMLElement).blur()
   }
 
   const handleNumberReduce = () => {
     const quantity: number = Number(getValues(name))
-    if (quantity > 1) setValue(name, quantity - 1)
+    if (quantity - step >= min) setValue(name, quantity - step)
   }
 
   const handleNumberIncrease = () => {
     const quantity: number = Number(getValues(name))
-    setValue(name, quantity + 1)
+    if (quantity + step <= max) setValue(name, quantity + step)
+  }
+
+  const handleNumberInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    const keys = allowArrow
+      ? ['KeyE', 'Period']
+      : ['ArrowUp', 'ArrowDown', 'KeyE', 'Period']
+    const eventCode: string = event.code
+    const isArrowDown: boolean = eventCode === 'ArrowDown'
+
+    if (eventCode === 'Minus') event.preventDefault()
+    if (keys.indexOf(event.code) > -1) {
+      const elemTarget: any = event.target
+      const value: number = Number(elemTarget.value)
+
+      if (value <= 1 && isArrowDown) {
+        event.preventDefault()
+      } else {
+        event.preventDefault()
+        if (isArrowDown) {
+          handleNumberReduce()
+        } else {
+          handleNumberIncrease()
+        }
+      }
+    }
   }
 
   return (

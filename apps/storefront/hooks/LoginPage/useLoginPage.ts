@@ -18,7 +18,7 @@ export const useLoginPage = () => {
       option: '',
       radio: '',
       checkbox: false,
-      quantity: 1,
+      quantity: 6,
       color: '',
       size: ''
     }

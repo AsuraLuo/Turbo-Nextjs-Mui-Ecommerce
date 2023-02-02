@@ -1,4 +1,5 @@
 import BaseCheckbox from './BaseCheckbox'
+import BaseDatePicker from './BaseDatePicker'
 import BaseFileUpload from './BaseFileUpload'
 import BaseInputNumber from './BaseInputNumber'
 import BasePassword from './BasePassword'
@@ -14,6 +15,7 @@ import LoadingButton from './LoadingButton'
 
 export {
   BaseCheckbox,
+  BaseDatePicker,
   BaseFileUpload,
   BaseInputNumber,
   BasePassword,

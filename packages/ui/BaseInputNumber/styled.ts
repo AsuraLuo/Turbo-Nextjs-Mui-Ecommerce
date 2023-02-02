@@ -23,4 +23,8 @@ export const StyleInputNumber = styled.div`
     padding: 0.5625rem 0.875rem;
     text-align: center;
   }
+
+  .MuiButton-root {
+    padding: 0.65625rem 0.875rem;
+  }
 `

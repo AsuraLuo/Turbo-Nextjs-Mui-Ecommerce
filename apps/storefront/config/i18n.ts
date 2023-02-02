@@ -11,6 +11,10 @@ export const I18nConf: any = {
       'Minimum length of this field must be equal or greater than {number} symbols. Leading and trailing spaces will be ignored.',
     'validate.passwordLenth':
       'Minimum of different classes of characters in password is {number}.',
-    'validate.fileUpload.defaultText': 'Drag and drop a file here or click'
+    'validate.fileUpload.defaultText': 'Drag and drop a file here or click',
+    'validate.inputNumber.minQtyText':
+      'The product has reached the minimum additional purchase quantity.',
+    'validate.inputNumber.maxQtyText':
+      'The product has reached the maximum additional purchase quantity.'
   }
 }

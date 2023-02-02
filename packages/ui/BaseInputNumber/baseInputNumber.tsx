@@ -1,9 +1,17 @@
-import { FC, KeyboardEvent, WheelEvent } from 'react'
+import {
+  FC,
+  KeyboardEvent,
+  WheelEvent,
+  useEffect,
+  useMemo,
+  useState
+} from 'react'
 import { Controller, FieldErrors } from 'react-hook-form'
 import { Button, TextField, StandardTextFieldProps } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
 import RemoveIcon from '@mui/icons-material/Remove'
 
+import BaseTooltip from './baseTooltip'
 import { formatMessage } from '../CurrentLocale'
 import { StyleInputNumber } from './styled'
 
@@ -13,6 +21,8 @@ interface BaseInputNumberProps extends StandardTextFieldProps {
   min?: number
   max?: number
   step?: number
+  minQtyText?: string
+  maxQtyText?: string
   allowArrow?: boolean
   fullWidth?: boolean
   required?: boolean
@@ -31,6 +41,8 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
   min = 1,
   max = 99999,
   step = 1,
+  minQtyText = '',
+  maxQtyText = '',
   allowArrow = false,
   fullWidth = false,
   required = false,
@@ -41,6 +53,7 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
 }: any) => {
   delete rest?.label
   const type: string = 'number'
+  const [quantity, setQuantity] = useState<number>(1)
   const controllerProps: any = {
     type,
     name,
@@ -62,18 +75,48 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
     ...rest
   }
 
+  const isQtyMin: boolean = useMemo(() => {
+    return quantity === min
+  }, [min, quantity])
+
+  const isQtyMax: boolean = useMemo(() => {
+    return quantity === max
+  }, [max, quantity])
+
+  const handleNumberReduce = () => {
+    const value: number = Number(getValues(name))
+    if (value - step >= min) {
+      setValue(name, value - step)
+      setQuantity(value - step)
+    }
+  }
+
+  const handleNumberIncrease = () => {
+    const value: number = Number(getValues(name))
+    if (value + step <= max) {
+      setValue(name, value + step)
+      setQuantity(value + step)
+    }
+  }
+
   const handleNumberInputWheel = (event: WheelEvent<HTMLInputElement>) => {
     ;(event.target as HTMLElement).blur()
   }
 
-  const handleNumberReduce = () => {
-    const quantity: number = Number(getValues(name))
-    if (quantity - step >= min) setValue(name, quantity - step)
-  }
+  const handleNumberInputBlur = (event: KeyboardEvent<HTMLInputElement>) => {
+    const elemTarget: HTMLInputElement = event.target as HTMLInputElement
+    const value: number = Number(elemTarget.value)
 
-  const handleNumberIncrease = () => {
-    const quantity: number = Number(getValues(name))
-    if (quantity + step <= max) setValue(name, quantity + step)
+    if (value < min) {
+      setValue(name, min)
+      setQuantity(min)
+    } else if (value > max) {
+      setValue(name, max)
+      setQuantity(max)
+    } else {
+      setValue(name, value - (value % step))
+      setQuantity(value - (value % step))
+    }
   }
 
   const handleNumberInputKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -101,14 +144,33 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
     }
   }
 
+  useEffect(() => {
+    const value: number = Number(getValues(name))
+    setQuantity(value)
+  }, [getValues, name])
+
   return (
     <Controller
       {...controllerProps}
       render={({ field }) => (
         <StyleInputNumber>
-          <Button variant="contained" onClick={handleNumberReduce}>
-            <RemoveIcon fontSize="small" />
-          </Button>
+          <BaseTooltip
+            visible={isQtyMin}
+            title={
+              minQtyText ||
+              formatMessage({ id: 'validate.inputNumber.minQtyText' })
+            }
+          >
+            <div>
+              <Button
+                variant="contained"
+                disabled={isQtyMin}
+                onClick={handleNumberReduce}
+              >
+                <RemoveIcon fontSize="small" />
+              </Button>
+            </div>
+          </BaseTooltip>
           <TextField
             {...field}
             {...textField}
@@ -116,12 +178,27 @@ const BaseInputNumber: FC<BaseInputNumberProps> = ({
             helperText={
               (errors as any)[name] ? (errors as any)[name].message : null
             }
+            onBlur={handleNumberInputBlur}
             onKeyDown={handleNumberInputKeyDown}
             onWheel={handleNumberInputWheel}
           />
-          <Button variant="contained" onClick={handleNumberIncrease}>
-            <AddIcon fontSize="small" />
-          </Button>
+          <BaseTooltip
+            visible={isQtyMax}
+            title={
+              maxQtyText ||
+              formatMessage({ id: 'validate.inputNumber.maxQtyText' })
+            }
+          >
+            <div>
+              <Button
+                variant="contained"
+                disabled={isQtyMax}
+                onClick={handleNumberIncrease}
+              >
+                <AddIcon fontSize="small" />
+              </Button>
+            </div>
+          </BaseTooltip>
         </StyleInputNumber>
       )}
     />

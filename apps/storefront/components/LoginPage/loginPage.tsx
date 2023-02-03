@@ -1,6 +1,7 @@
 import {
   BaseCheckbox,
   BaseFileUpload,
+  BaseImagesUpload,
   BaseInputNumber,
   BaseTextField,
   BasePassword,
@@ -25,9 +26,9 @@ const LoginPage = () => {
     setValue,
     trigger,
     handleFormSubmit,
-    handleOptionChange,
-    handleValidEmail,
-    handleValidPassword
+    handleOptionChange
+    // handleValidEmail,
+    // handleValidPassword
   } = useLoginPage()
 
   return (
@@ -36,32 +37,41 @@ const LoginPage = () => {
         <BaseTextField
           name="email"
           label="Email"
-          required
+          // required
           control={control}
           errors={errors}
-          validate={handleValidEmail}
+          // validate={handleValidEmail}
         />
         <BasePassword
           name="password"
           label="Password"
-          required
+          // required
           control={control}
           errors={errors}
-          validate={handleValidPassword}
+          // validate={handleValidPassword}
         />
         <BaseSelect
           name="option"
           label="Option"
-          required
+          // required
           control={control}
           errors={errors}
           options={options}
           setValue={setValue}
           trigger={trigger}
         />
+        <BaseImagesUpload
+          name="images"
+          label="Images"
+          required
+          control={control}
+          errors={errors}
+          setValue={setValue}
+          trigger={trigger}
+        />
         <BaseRadioGroup
           name="radio"
-          required
+          // required
           control={control}
           errors={errors}
           options={options}
@@ -70,7 +80,7 @@ const LoginPage = () => {
           <BaseCheckbox
             name="checkbox"
             label="Checkbox"
-            required
+            // required
             control={control}
             errors={errors}
             setValue={setValue}
@@ -80,7 +90,7 @@ const LoginPage = () => {
         <BaseInputNumber
           name="quantity"
           label="Quantity"
-          required
+          // required
           step={5}
           min={5}
           max={100}
@@ -95,7 +105,7 @@ const LoginPage = () => {
               key={option.value}
               name={option.value}
               label={option.label}
-              required
+              // required
               options={option.options}
               control={control}
               errors={errors}

@@ -15,6 +15,7 @@ export const useLoginPage = () => {
     defaultValues: {
       email: '',
       password: '',
+      images: [],
       option: '',
       radio: '',
       checkbox: false,

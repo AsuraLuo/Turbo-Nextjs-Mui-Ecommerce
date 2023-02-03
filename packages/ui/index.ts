@@ -1,6 +1,7 @@
 import BaseCheckbox from './BaseCheckbox'
 import BaseDatePicker from './BaseDatePicker'
 import BaseFileUpload from './BaseFileUpload'
+import BaseImagesUpload from './BaseImagesUpload'
 import BaseInputNumber from './BaseInputNumber'
 import BasePassword from './BasePassword'
 import BaseRadioGroup from './BaseRadioGroup'
@@ -17,6 +18,7 @@ export {
   BaseCheckbox,
   BaseDatePicker,
   BaseFileUpload,
+  BaseImagesUpload,
   BaseInputNumber,
   BasePassword,
   BaseRadioGroup,

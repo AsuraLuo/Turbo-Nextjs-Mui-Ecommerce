@@ -31,14 +31,9 @@ const BaseDatePicker = ({ control, errors, ...rest }: any) => {
     rules: {
       required:
         required &&
-        formatMessage(
-          {
-            id: 'intl.global.validate.required'
-          },
-          {
-            label
-          }
-        ),
+        formatMessage({
+          id: 'global.required'
+        }),
       validate: validate && ((v: string) => validate(v))
     },
     control

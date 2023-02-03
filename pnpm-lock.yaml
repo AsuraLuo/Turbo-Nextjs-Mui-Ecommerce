@@ -176,11 +176,13 @@ importers:
       date-fns: ^2.29.3
       eslint: ^7.32.0
       eslint-config-ecommerce: workspace:*
+      react-images-uploading: ^3.1.7
       react-mui-dropzone: ^4.0.6
       typescript: ^4.5.2
     dependencies:
       '@mui/x-date-pickers': 5.0.16_date-fns@2.29.3
       date-fns: 2.29.3
+      react-images-uploading: 3.1.7
       react-mui-dropzone: 4.0.6
     devDependencies:
       '@ecommerce/tsconfig': link:../tsconfig
@@ -5974,6 +5976,14 @@ packages:
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
+    dev: false
+
+  /react-images-uploading/3.1.7:
+    resolution: {integrity: sha512-woET50eCezm645iIeP4gCoN7HjdR3T64UXC5l53yd+2vHFp+pwABH8Z/aAO5IXDeC1aP6doQ+K738L701zswAw==}
+    engines: {node: '>=8', npm: '>=5'}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
     dev: false
 
   /react-intl/6.2.5:

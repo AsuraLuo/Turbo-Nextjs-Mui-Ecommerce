@@ -8,6 +8,7 @@ import BaseRadioGroup from './BaseRadioGroup'
 import BaseSelect from './BaseSelect'
 import BaseSwatchRadio from './BaseSwatchRadio'
 import BaseTextField from './BaseTextField'
+import BaseTinymceEditor from './BaseTinymceEditor'
 import Button from './Button'
 import CssBaseline from './CssBaseline'
 import CurrentLocale, { formatMessage } from './CurrentLocale'
@@ -25,6 +26,7 @@ export {
   BaseSwatchRadio,
   BaseSelect,
   BaseTextField,
+  BaseTinymceEditor,
   Button,
   CssBaseline,
   CurrentLocale,

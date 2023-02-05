@@ -1,6 +1,7 @@
 import {
   BaseCheckbox,
   BaseFileUpload,
+  BaseTinymceEditor,
   BaseImagesUpload,
   BaseInputNumber,
   BaseTextField,
@@ -49,6 +50,12 @@ const LoginPage = () => {
           control={control}
           errors={errors}
           // validate={handleValidPassword}
+        />
+        <BaseTinymceEditor
+          apiKey="hltbjb1mufemk58bepc4p9hua2k68nc0xekpkghludp198r4"
+          value={
+            '<p><em>Hello</em>, <span style="text-decoration: underline;"><strong>World!</strong></span></p>'
+          }
         />
         <BaseSelect
           name="option"

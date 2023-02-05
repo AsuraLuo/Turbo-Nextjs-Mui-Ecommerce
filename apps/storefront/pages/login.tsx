@@ -1,6 +1,9 @@
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
-import LoginPage from '@components/LoginPage'
+const LoginPage = dynamic(() => import('@components/LoginPage'), {
+  ssr: false
+})
 
 const Login = () => {
   return (

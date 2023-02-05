@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
 export const StyledLoginPage = styled.div`
-  max-width: 30%;
+  max-width: 50%;
   margin: 3rem auto 0;
 `

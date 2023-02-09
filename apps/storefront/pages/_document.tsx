@@ -29,9 +29,10 @@ class HeadlessDocument extends Document<HeadlessProps> {
     return (
       <Html {...this.helmetHtmlAttrComponents}>
         <Head>
+          {this.helmetHeadComponents}
+          <meta name="emotion-insertion-point" content="" />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
-          {this.helmetHeadComponents}
         </Head>
         <body {...this.helmetBodyAttrComponents}>
           <Main />

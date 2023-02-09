@@ -36,6 +36,7 @@
     "@mui/styles": "^5.11.2",
     "@reduxjs/toolkit": "^1.9.1",
     "clsx": "^1.2.1",
+    "encoding": "^0.1.13",
     "koa": "^2.14.1",
     "lodash": "^4.17.21",
     "notistack": "^2.0.8",

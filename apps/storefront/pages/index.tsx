@@ -1,8 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { Button, I18n } from '@ecommerce/ui'
-
 const Home = () => {
   return (
     <>
@@ -10,12 +8,14 @@ const Home = () => {
         <title>Home Page</title>
       </Head>
       <main>
-        <Button type="button">
-          <I18n id="global.addToCart" />
-        </Button>
         <div>
-          <Link href="/login" title="Jump Login Page">
-            Jump Login Page
+          <Link href="/login" title="Login Page">
+            Login Page
+          </Link>
+        </div>
+        <div>
+          <Link href="/about-us" title="About Us">
+            About Us
           </Link>
         </div>
       </main>

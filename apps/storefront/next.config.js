@@ -21,7 +21,7 @@ module.exports = () => {
       removeConsole: isProd
     },
     eslint: {
-      ignoreDuringBuilds: true
+      ignoreDuringBuilds: isProd
     },
     modularizeImports: {
       lodash: {
@@ -35,7 +35,7 @@ module.exports = () => {
       }
     },
     typescript: {
-      ignoreBuildErrors: true
+      ignoreBuildErrors: isProd
     },
     webpack: (config) => {
       // Important: return the modified config

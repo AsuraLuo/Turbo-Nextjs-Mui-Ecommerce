@@ -1,6 +1,9 @@
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 
-import { BasePageBuilder } from '@ecommerce/ui'
+const BasePageBuilder = dynamic(() => import('@ecommerce/ui/BasePageBuilder'), {
+  ssr: true
+})
 
 const Login = () => {
   return (

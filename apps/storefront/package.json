@@ -30,6 +30,8 @@
     "nookies": "^2.5.2",
     "notistack": "^2.0.8",
     "pm2": "^5.2.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",
     "spdy": "^4.0.2",
     "ts-node": "^10.9.1"

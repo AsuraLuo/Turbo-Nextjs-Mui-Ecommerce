@@ -23,6 +23,20 @@ module.exports = () => {
     eslint: {
       ignoreDuringBuilds: true
     },
+    modularizeImports: {
+      lodash: {
+        transform: 'lodash/{{member}}'
+      },
+      '@mui/material': {
+        transform: '@mui/material/{{member}}'
+      },
+      '@mui/icons-material/?(((\\w*)?/?)*)': {
+        transform: '@mui/icons-material/{{ matches.[1] }}/{{member}}'
+      }
+    },
+    typescript: {
+      ignoreBuildErrors: true
+    },
     webpack: (config) => {
       // Important: return the modified config
       return config

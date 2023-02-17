@@ -162,8 +162,13 @@ importers:
 
   packages/hooks:
     specifiers:
+      '@types/stylis': ^4.0.2
+      stylis: ^4.1.3
       typescript: ^4.5.2
+    dependencies:
+      stylis: 4.1.3
     devDependencies:
+      '@types/stylis': 4.0.2
       typescript: 4.9.5
 
   packages/tsconfig:
@@ -1892,6 +1897,10 @@ packages:
     resolution: {integrity: sha512-/33fIRK/aqkKNxg9BSjpzt1ucmvPremgeDywm9z2C2mOlIh5Ljjvgc3UhQHqwXsSLDLHPT9jlsnrjKQ1XiVJzA==}
     dependencies:
       '@types/node': 18.13.0
+    dev: true
+
+  /@types/stylis/4.0.2:
+    resolution: {integrity: sha512-wtckGuk1eXUlUz0Qb1eXHG37Z7HWT2GfMdqRf8F/ifddTwadSS9Jwsqi4qtXk7cP7MtoyGVIHPElFCLc6HItbg==}
     dev: true
 
   /@types/unist/2.0.6:

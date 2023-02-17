@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
+import { Button } from '@ecommerce/ui'
+
 const Home = () => {
   return (
     <>
@@ -14,7 +16,9 @@ const Home = () => {
       </div>
       <div>
         <Link href="/about-us" title="About Us">
-          About Us
+          <Button variant="contained" type="button">
+            About Us
+          </Button>
         </Link>
       </div>
     </>

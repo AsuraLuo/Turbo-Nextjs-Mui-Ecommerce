@@ -7,18 +7,16 @@ const Home = () => {
       <Head>
         <title>Home Page</title>
       </Head>
-      <main>
-        <div>
-          <Link href="/login" title="Login Page">
-            Login Page
-          </Link>
-        </div>
-        <div>
-          <Link href="/about-us" title="About Us">
-            About Us
-          </Link>
-        </div>
-      </main>
+      <div>
+        <Link href="/login" title="Login Page">
+          Login Page
+        </Link>
+      </div>
+      <div>
+        <Link href="/about-us" title="About Us">
+          About Us
+        </Link>
+      </div>
     </>
   )
 }

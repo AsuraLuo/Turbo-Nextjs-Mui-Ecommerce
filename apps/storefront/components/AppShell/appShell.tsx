@@ -7,6 +7,7 @@ import { theme } from '@config/theme'
 import { CssBaseline, CurrentLocale } from '@ecommerce/ui'
 
 import GlobalStyled from '@components/GlobalStyled'
+import { StyledMain } from './styled'
 
 interface AppShellProps {
   children: ReactNode
@@ -36,7 +37,7 @@ const AppShell: FC<AppShellProps> = ({ children, cache }) => {
         <CssBaseline />
         <CurrentLocale />
         <GlobalStyled />
-        <main>{children}</main>
+        <StyledMain>{children}</StyledMain>
       </ThemeProvider>
     </CacheProvider>
   )

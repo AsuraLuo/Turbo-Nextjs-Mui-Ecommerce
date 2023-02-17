@@ -23,6 +23,7 @@ importers:
       lint-staged: ^13.1.0
       lodash: ^4.17.21
       prettier: ^2.7.1
+      react-helmet: ^6.1.0
       react-hook-form: ^7.43.0
       react-intl: ^6.2.5
       react-redux: ^8.0.5
@@ -44,6 +45,7 @@ importers:
       '@reduxjs/toolkit': 1.9.2_react-redux@8.0.5
       clsx: 1.2.1
       lodash: 4.17.21
+      react-helmet: 6.1.0
       react-hook-form: 7.43.1
       react-intl: 6.2.8
       react-redux: 8.0.5
@@ -91,7 +93,6 @@ importers:
       pm2: ^5.2.2
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-helmet: ^6.1.0
       spdy: ^4.0.2
       ts-node: ^10.9.1
       typescript: ^4.5.3
@@ -110,7 +111,6 @@ importers:
       pm2: 5.2.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-helmet: 6.1.0_react@18.2.0
       spdy: 4.0.2
       ts-node: 10.9.1_4bewfcp2iebiwuold25d6rgcsy
     devDependencies:
@@ -6290,16 +6290,15 @@ packages:
     resolution: {integrity: sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==}
     dev: false
 
-  /react-helmet/6.1.0_react@18.2.0:
+  /react-helmet/6.1.0:
     resolution: {integrity: sha512-4uMzEY9nlDlgxr61NL3XbKRy1hEkXmKNXhjbAIOVw5vcFrsdYbH2FEwcNyWvWinl103nXgzYNlns9ca+8kFiWw==}
     peerDependencies:
       react: '>=16.3.0'
     dependencies:
       object-assign: 4.1.1
       prop-types: 15.8.1
-      react: 18.2.0
       react-fast-compare: 3.2.0
-      react-side-effect: 2.1.2_react@18.2.0
+      react-side-effect: 2.1.2
     dev: false
 
   /react-hook-form/7.43.1:
@@ -6392,12 +6391,10 @@ packages:
       use-sync-external-store: 1.2.0
     dev: false
 
-  /react-side-effect/2.1.2_react@18.2.0:
+  /react-side-effect/2.1.2:
     resolution: {integrity: sha512-PVjOcvVOyIILrYoyGEpDN3vmYNLdy1CajSFNt4TDsVQC5KpTijDvWVoR+/7Rz2xT978D8/ZtFceXxzsPwZEDvw==}
     peerDependencies:
       react: ^16.3.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
     dev: false
 
   /react-transition-group/4.4.5:

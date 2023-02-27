@@ -24,6 +24,7 @@ module.exports = {
     ],
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
+    'jsx-a11y/aria-unsupported-elements': 0,
     'no-console': ['error', { allow: ['error', 'info', 'warn'] }],
     'no-param-reassign': 0,
     'no-plusplus': 0,

@@ -6,7 +6,8 @@ export type Px2RemPluginOptions = {
   blockList?: string[]
 }
 
-const pxRegexp: RegExp = /"[^"]+"|'[^']+'|url\([^)]+\)|(\d*\.?\d+)px/g
+const pxRegexp: RegExp =
+  /"[^"]+"|'[^']+'|url\([^)]+\)|var\([^)]+\)|(\d*\.?\d+)px/g
 
 export const stylisPx2RemPlugin = (
   options: Px2RemPluginOptions = {}

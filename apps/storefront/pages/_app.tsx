@@ -16,13 +16,13 @@ interface InitialPage {
   ctx: any
 }
 
-// Client-side cache, shared for the whole session of the user in the browser.
-const clientEmotionCache = createEmotionCache()
-
 interface HeadlessProps extends AppProps {
   emotionCache?: EmotionCache
   reduxStore?: any
 }
+
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientEmotionCache = createEmotionCache()
 
 const App = ({
   Component,

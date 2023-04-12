@@ -1,56 +1,22 @@
-const isProd = process.env.NODE_ENV === 'production'
-const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
+const baseConfig = require('@ecommerce/next-config')
 
-module.exports = () => {
+const nextConfig = baseConfig()
+
+module.exports = {
   /**
    * @type {import('next').NextConfig}
    */
-  const nextConfig = {
-    basePath: '',
-    compress: false,
-    distDir: '.next',
-    generateEtags: false,
-    pageExtensions: ['tsx', 'ts'],
-    poweredByHeader: false,
-    reactStrictMode: true,
-    swcMinify: true,
-    trailingSlash: false,
-    transpilePackages: ['@ecommerce/ui'],
-    compiler: {
-      reactRemoveProperties: isProd,
-      removeConsole: isProd
-    },
-    eslint: {
-      ignoreDuringBuilds: isProd
-    },
-    modularizeImports: {
-      lodash: {
-        transform: 'lodash/{{member}}'
-      },
-      '@mui/material': {
-        transform: '@mui/material/{{member}}'
-      },
-      '@mui/icons-material/?(((\\w*)?/?)*)': {
-        transform: '@mui/icons-material/{{ matches.[1] }}/{{member}}'
+  ...nextConfig,
+  async rewrites() {
+    const baseRewrites = await nextConfig.rewrites()
+    return [...baseRewrites]
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**'
       }
-    },
-    typescript: {
-      ignoreBuildErrors: isProd
-    },
-    webpack: (config) => {
-      // Important: return the modified config
-      return config
-    }
+    ]
   }
-
-  const plugins = []
-
-  if (isAnalyzer)
-    plugins.push(
-      require('@next/bundle-analyzer')({
-        enabled: true
-      })
-    )
-
-  return plugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig })
 }

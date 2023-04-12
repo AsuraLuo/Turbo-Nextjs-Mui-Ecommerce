@@ -18,6 +18,7 @@
     "deploy:ecommerce": "./node_modules/pm2/bin/pm2 reload pm2.config.js"
   },
   "dependencies": {
+    "@ecommerce/next-config": "workspace:*",
     "@ecommerce/hooks": "workspace:*",
     "@ecommerce/tsconfig": "workspace:*",
     "@ecommerce/ui": "workspace:*",

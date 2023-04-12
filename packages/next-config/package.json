@@ -1,0 +1,12 @@
+{
+  "name": "@ecommerce/next-config",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^13.2.4"
+  }
+}

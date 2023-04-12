@@ -3,7 +3,6 @@ import BaseDatePicker from './BaseDatePicker'
 import BaseFileUpload from './BaseFileUpload'
 import BaseImagesUpload from './BaseImagesUpload'
 import BaseInputNumber from './BaseInputNumber'
-import BasePageBuilder from './BasePageBuilder'
 import BasePassword from './BasePassword'
 import BaseRadioGroup from './BaseRadioGroup'
 import BaseSelect from './BaseSelect'
@@ -22,7 +21,6 @@ export {
   BaseFileUpload,
   BaseImagesUpload,
   BaseInputNumber,
-  BasePageBuilder,
   BasePassword,
   BaseRadioGroup,
   BaseSwatchRadio,

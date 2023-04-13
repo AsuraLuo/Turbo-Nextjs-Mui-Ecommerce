@@ -1,6 +1,9 @@
+const withPWA = require('next-pwa')
+const runtimeCaching = require('next-pwa/cache')
+
 const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
-const cndURL = process.env.REACT_APP_CDN_URL_PREFIX
+const cndURL = process.env.REACT_APP_CDN_URL
 
 module.exports = () => {
   /**
@@ -60,6 +63,20 @@ module.exports = () => {
     plugins.push(
       require('@next/bundle-analyzer')({
         enabled: true
+      })
+    )
+
+  if (isProd)
+    plugins.push(
+      withPWA({
+        disable: false,
+        dest: 'public',
+        register: true,
+        skipWaiting: true,
+        reloadOnOnline: false,
+        buildExcludes: [/middleware-manifest\.json$/],
+        publicExcludes: ['!robots.txt'],
+        runtimeCaching
       })
     )
 

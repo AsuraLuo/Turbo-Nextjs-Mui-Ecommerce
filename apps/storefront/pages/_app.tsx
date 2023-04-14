@@ -5,6 +5,7 @@ import { SnackbarProvider } from 'notistack'
 import { EmotionCache } from '@emotion/react'
 import { isEmpty } from 'lodash'
 
+import { IConsole } from '@ecommerce/ui'
 import { createEmotionCache } from '@ecommerce/hooks'
 import { withRedux, LocaleContextProvider } from '@provider/index'
 import { fetchApp } from '@hooks/App'
@@ -23,6 +24,7 @@ interface HeadlessProps extends AppProps {
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientEmotionCache = createEmotionCache()
+const isProd: boolean = process.env.NODE_ENV === 'production'
 
 const App = ({
   Component,
@@ -67,6 +69,7 @@ const App = ({
           </LocaleContextProvider>
         </SnackbarProvider>
       </ReduxProvider>
+      {!isProd && <IConsole />}
     </>
   )
 }

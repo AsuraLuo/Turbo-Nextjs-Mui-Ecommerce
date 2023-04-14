@@ -17,5 +17,6 @@ export { default as I18n } from './I18n'
 export { default as LoadingButton } from './LoadingButton'
 
 export { formatMessage } from './CurrentLocale'
+export { default as IConsole } from './IConsole'
 export { default as IGoogleWebCache } from './IGoogleWebCache'
 export { default as INextHead } from './INextHead'

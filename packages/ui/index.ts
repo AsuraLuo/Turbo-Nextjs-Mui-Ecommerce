@@ -1,36 +1,21 @@
-import BaseCheckbox from './BaseCheckbox'
-import BaseDatePicker from './BaseDatePicker'
-import BaseFileUpload from './BaseFileUpload'
-import BaseImagesUpload from './BaseImagesUpload'
-import BaseInputNumber from './BaseInputNumber'
-import BasePassword from './BasePassword'
-import BaseRadioGroup from './BaseRadioGroup'
-import BaseSelect from './BaseSelect'
-import BaseSwatchRadio from './BaseSwatchRadio'
-import BaseTextField from './BaseTextField'
-import BaseTinymceEditor from './BaseTinymceEditor'
-import Button from './Button'
-import CssBaseline from './CssBaseline'
-import CurrentLocale, { formatMessage } from './CurrentLocale'
-import I18n from './I18n'
-import LoadingButton from './LoadingButton'
+export { default as BaseCheckbox } from './BaseCheckbox'
+export { default as BaseDatePicker } from './BaseDatePicker'
+export { default as BaseFileUpload } from './BaseFileUpload'
+export { default as BaseImagesUpload } from './BaseImagesUpload'
+export { default as BaseInputNumber } from './BaseInputNumber'
+export { default as BasePassword } from './BasePassword'
+export { default as BaseRadioGroup } from './BaseRadioGroup'
+export { default as BaseSelect } from './BaseSelect'
+export { default as BaseSwatchRadio } from './BaseSwatchRadio'
+export { default as BaseTextField } from './BaseTextField'
+export { default as BaseTinymceEditor } from './BaseTinymceEditor'
+export { default as Button } from './Button'
 
-export {
-  BaseCheckbox,
-  BaseDatePicker,
-  BaseFileUpload,
-  BaseImagesUpload,
-  BaseInputNumber,
-  BasePassword,
-  BaseRadioGroup,
-  BaseSwatchRadio,
-  BaseSelect,
-  BaseTextField,
-  BaseTinymceEditor,
-  Button,
-  CssBaseline,
-  CurrentLocale,
-  I18n,
-  LoadingButton,
-  formatMessage
-}
+export { default as CssBaseline } from './CssBaseline'
+export { default as CurrentLocale } from './CurrentLocale'
+export { default as I18n } from './I18n'
+export { default as LoadingButton } from './LoadingButton'
+
+export { formatMessage } from './CurrentLocale'
+export { default as IGoogleWebCache } from './IGoogleWebCache'
+export { default as INextHead } from './INextHead'

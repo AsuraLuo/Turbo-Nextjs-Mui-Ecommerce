@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import createEmotionServer from '@emotion/server/create-instance'
 
 import { createEmotionCache } from '@ecommerce/hooks'
+import { INextHead, IGoogleWebCache } from '@ecommerce/ui'
 
 interface HeadlessProps {
   helmet: any
@@ -29,14 +30,16 @@ class HeadlessDocument extends Document<HeadlessProps> {
     return (
       <Html {...this.helmetHtmlAttrComponents}>
         <Head>
-          {this.helmetHeadComponents}
+          <INextHead />
           <meta name="emotion-insertion-point" content="" />
+          {this.helmetHeadComponents}
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
         </Head>
         <body {...this.helmetBodyAttrComponents}>
           <Main />
           <NextScript />
+          <IGoogleWebCache />
         </body>
       </Html>
     )

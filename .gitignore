@@ -31,3 +31,7 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+# Pwa service worker
+sw.js
+workbox-*.js

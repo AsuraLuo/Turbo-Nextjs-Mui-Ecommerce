@@ -6,10 +6,11 @@
   "publishConfig": {
     "access": "public"
   },
+  "dependencies": {
+    "dateformat": "^4.5.1",
+    "next-pwa": "^5.6.0"
+  },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.2.4"
-  },
-  "dependencies": {
-    "next-pwa": "^5.6.0"
   }
 }

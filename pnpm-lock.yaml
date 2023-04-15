@@ -184,8 +184,10 @@ importers:
   packages/next-config:
     specifiers:
       '@next/bundle-analyzer': ^13.2.4
+      dateformat: ^4.5.1
       next-pwa: ^5.6.0
     dependencies:
+      dateformat: 4.6.3
       next-pwa: 5.6.0
     devDependencies:
       '@next/bundle-analyzer': 13.3.0
@@ -4005,6 +4007,10 @@ packages:
   /date-fns/2.29.3:
     resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
     engines: {node: '>=0.11'}
+    dev: false
+
+  /dateformat/4.6.3:
+    resolution: {integrity: sha512-2P0p0pFGzHS5EMnhdxQi7aJN+iMheud0UhG4dlE1DLAlvL8JHjJJTX/CSm4JXwV0Ka5nGk3zC5mcb5bUQUxxMA==}
     dev: false
 
   /dayjs/1.11.7:

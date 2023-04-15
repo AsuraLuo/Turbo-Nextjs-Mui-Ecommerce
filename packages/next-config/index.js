@@ -1,11 +1,13 @@
 const withPWA = require('next-pwa')
 const runtimeCaching = require('next-pwa/cache')
+const dateformat = require('dateformat')
+
+const BannerPlugin = require('./banner')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
-const cndURL = process.env.REACT_APP_CDN_URL
 
-module.exports = () => {
+module.exports = (pkg) => {
   /**
    * @type {import('next').NextConfig}
    */
@@ -21,8 +23,8 @@ module.exports = () => {
     swcMinify: true,
     trailingSlash: false,
     // Use the CDN in production and localhost for development.
-    assetPrefix: isProd ? cndURL : undefined,
-    transpilePackages: ['@ecloud/ui'],
+    assetPrefix: isProd ? process.env.REACT_APP_CDN_URL : undefined,
+    transpilePackages: ['@ecommerce/ui'],
     compiler: {
       emotion: true,
       reactRemoveProperties: isProd,
@@ -51,7 +53,27 @@ module.exports = () => {
         }
       ]
     },
-    webpack: (config) => {
+    webpack: (config, { dev, isServer }) => {
+      // Client webpack conifg
+      if (!dev && !isServer) {
+        // Attention: It must be placed after terserplugin, otherwise the generated annotation description will be cleared by terserplugin or other compression plug-ins
+        if (isProd) {
+          // Automatic injection of copyright annotation information
+          config.optimization.minimizer.push(
+            new BannerPlugin({
+              banner: `/*!\n *  @name: ${pkg.name} \n *  @author: ${
+                pkg.author
+              } \n *  @date: ${dateformat(
+                new Date(),
+                'UTC:dddd, mmmm dS, yyyy, h:MM:ss TT'
+              )} \n *  @version: ${pkg.version} \n *  @license: ${
+                pkg.license
+              } \n *  @copyright: ${pkg.copyright} \n */\n`
+            })
+          )
+        }
+      }
+
       // Important: return the modified config
       return config
     }

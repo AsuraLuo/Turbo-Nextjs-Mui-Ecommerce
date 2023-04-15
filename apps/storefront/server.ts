@@ -4,22 +4,22 @@ import Koa from 'koa'
 import Router from '@koa/router'
 import { parse } from 'url'
 import { createServer } from 'spdy'
+import type { ParameterizedContext, Next } from 'koa'
 
 const port = parseInt(process.env.PORT || '3000', 10)
 const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev })
 const handle = app.getRequestHandler()
 
-const options: any = {
-  key: fs.readFileSync('keys/nextjs-key.pem'),
-  cert: fs.readFileSync('keys/nextjs-cert.pem')
-}
-
 app.prepare().then(() => {
   const server = new Koa()
   const router = new Router()
+  const options: any = {
+    key: fs.readFileSync('keys/ocommerce-key.pem'),
+    cert: fs.readFileSync('keys/ocommerce-cert.pem')
+  }
 
-  router.all('(.*)', async (ctx: any) => {
+  router.all('(.*)', async (ctx: ParameterizedContext) => {
     const { req, res } = ctx
     const parsedUrl = parse(req.url, true)
     await handle(req, res, parsedUrl)
@@ -28,7 +28,7 @@ app.prepare().then(() => {
 
   server.use(router.routes())
 
-  server.use(async (ctx: any, nextFunc: any) => {
+  server.use(async (ctx: ParameterizedContext, nextFunc: Next) => {
     ctx.res.statusCode = 200
     await nextFunc()
   })

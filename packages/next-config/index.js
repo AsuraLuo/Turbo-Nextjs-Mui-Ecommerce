@@ -1,13 +1,14 @@
 const withPWA = require('next-pwa')
-const runtimeCaching = require('next-pwa/cache')
+const nextCache = require('next-pwa/cache')
 const dateformat = require('dateformat')
 
 const BannerPlugin = require('./banner')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
+const CDN_URL = process.env.REACT_APP_CDN_URL || undefined
 
-module.exports = (pkg) => {
+module.exports = (pkg = {}) => {
   /**
    * @type {import('next').NextConfig}
    */
@@ -23,7 +24,7 @@ module.exports = (pkg) => {
     swcMinify: true,
     trailingSlash: false,
     // Use the CDN in production and localhost for development.
-    assetPrefix: isProd ? process.env.REACT_APP_CDN_URL : undefined,
+    assetPrefix: isProd ? CDN_URL : undefined,
     transpilePackages: ['@ecommerce/ui'],
     compiler: {
       emotion: true,
@@ -53,11 +54,11 @@ module.exports = (pkg) => {
         }
       ]
     },
-    webpack: (config, { dev, isServer }) => {
+    webpack: (config, { isServer }) => {
       // Client webpack conifg
-      if (!dev && !isServer) {
+      if (!isServer) {
         // Attention: It must be placed after terserplugin, otherwise the generated annotation description will be cleared by terserplugin or other compression plug-ins
-        if (isProd) {
+        if (isProd && pkg) {
           // Automatic injection of copyright annotation information
           config.optimization.minimizer.push(
             new BannerPlugin({
@@ -88,19 +89,26 @@ module.exports = (pkg) => {
       })
     )
 
-  if (isProd)
+  if (isProd) {
+    // Filter cache api resource
+    const runtimeCaching = nextCache.filter((cache) => {
+      return !(typeof cache.urlPattern === 'function')
+    })
     plugins.push(
       withPWA({
         disable: false,
         dest: 'public',
         register: true,
         skipWaiting: true,
-        reloadOnOnline: false,
+        reloadOnOnline: true,
+        cacheStartUrl: false,
+        dynamicStartUrl: true,
         buildExcludes: [/middleware-manifest\.json$/],
         publicExcludes: ['!robots.txt'],
         runtimeCaching
       })
     )
+  }
 
   return plugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig })
 }

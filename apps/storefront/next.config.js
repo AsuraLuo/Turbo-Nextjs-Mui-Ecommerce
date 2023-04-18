@@ -1,6 +1,9 @@
 const baseConfig = require('@ecommerce/next-config')
 
-const nextConfig = baseConfig()
+// using data from package.json
+const pkg = require('./package.json')
+
+const nextConfig = baseConfig(pkg)
 
 module.exports = {
   /**

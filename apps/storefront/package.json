@@ -1,5 +1,5 @@
 {
-  "name": "@ecommerce/storefront",
+  "name": "@ocommerce/storefront",
   "author": "",
   "license": "",
   "copyright": "Copyright © 2023 all right reserved.",
@@ -13,17 +13,17 @@
     "next:build": "next build && tsc --project tsconfig.server.json",
     "next:start": "cross-env NODE_ENV=production node dist/server.js",
     "lint": "next lint",
-    "stop:ecommerce": "./node_modules/pm2/bin/pm2 stop all",
-    "delete:ecommerce": "./node_modules/pm2/bin/pm2 delete all",
-    "deploy:ecommerce": "./node_modules/pm2/bin/pm2 reload pm2.config.js",
+    "stop:ocommerce": "./node_modules/pm2/bin/pm2 stop all",
+    "delete:ocommerce": "./node_modules/pm2/bin/pm2 delete all",
+    "deploy:ocommerce": "./node_modules/pm2/bin/pm2 reload pm2.config.js",
     "mkcert:prepare": "mkcert -install",
     "mkcert:genrate": "mkcert localhost 127.0.0.1 ::1"
   },
   "dependencies": {
-    "@ecommerce/hooks": "workspace:*",
-    "@ecommerce/next-config": "workspace:*",
-    "@ecommerce/tsconfig": "workspace:*",
-    "@ecommerce/ui": "workspace:*",
+    "@ocommerce/hooks": "workspace:*",
+    "@ocommerce/next-config": "workspace:*",
+    "@ocommerce/tsconfig": "workspace:*",
+    "@ocommerce/ui": "workspace:*",
     "@koa/router": "^12.0.0",
     "cross-env": "^7.0.3",
     "encoding": "^0.1.13",
@@ -40,7 +40,6 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.1.1",
-    "@next/font": "^13.1.1",
     "@types/koa": "^2.13.5",
     "@types/koa__router": "^12.0.0",
     "@types/node": "^18.11.18",
@@ -49,7 +48,7 @@
     "@types/react-dom": "^18.0.10",
     "@types/spdy": "^3.4.5",
     "eslint": "^7.32.0",
-    "eslint-config-ecommerce": "workspace:*",
+    "eslint-config-ocommerce": "workspace:*",
     "nodemon": "^2.0.20",
     "typescript": "^4.5.3"
   }

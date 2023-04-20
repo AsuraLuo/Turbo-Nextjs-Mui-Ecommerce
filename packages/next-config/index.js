@@ -25,7 +25,7 @@ module.exports = (pkg = {}) => {
     trailingSlash: false,
     // Use the CDN in production and localhost for development.
     assetPrefix: isProd ? CDN_URL : undefined,
-    transpilePackages: ['@ecommerce/ui'],
+    transpilePackages: ['@ocommerce/ui'],
     compiler: {
       emotion: true,
       reactRemoveProperties: isProd,

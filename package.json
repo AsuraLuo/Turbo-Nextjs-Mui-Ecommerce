@@ -1,5 +1,5 @@
 {
-  "name": "turbo-nextjs-mui-ecommerce",
+  "name": "turbo-nextjs-mui-ocommerce",
   "version": "0.1.0",
   "private": true,
   "workspaces": [
@@ -14,7 +14,7 @@
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
-    "build:ecommerce": "turbo run build --filter=@ecommerce/storefront",
+    "build:ocommerce": "turbo run build --filter=@ocommerce/storefront",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare:husky": "husky install",
@@ -50,7 +50,7 @@
     "@types/react-helmet": "^6.1.6",
     "cz-customizable": "^7.0.0",
     "eslint": "^8.31.0",
-    "eslint-config-ecommerce": "workspace:*",
+    "eslint-config-ocommerce": "workspace:*",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
     "prettier": "^2.7.1",

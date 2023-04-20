@@ -5,8 +5,8 @@ import { SnackbarProvider } from 'notistack'
 import { EmotionCache } from '@emotion/react'
 import { isEmpty } from 'lodash'
 
-import { IConsole } from '@ecommerce/ui'
-import { createEmotionCache } from '@ecommerce/hooks'
+import { IConsole } from '@ocommerce/ui'
+import { createEmotionCache } from '@ocommerce/hooks'
 import { withRedux, LocaleContextProvider } from '@provider/index'
 import { fetchApp } from '@hooks/App'
 
@@ -43,12 +43,12 @@ const App = ({
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-        <meta name="apple-mobile-web-app-title" content="Ecommerce" />
+        <meta name="apple-mobile-web-app-title" content="Ocommerce" />
         <meta name="format-detection" content="telephone=no, email=no" />
-        <meta name="application-name" content="Ecommerce" />
+        <meta name="application-name" content="Ocommerce" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Ecommerce" />
+        <meta name="apple-mobile-web-app-title" content="Ocommerce" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="msapplication-tap-highlight" content="no" />
@@ -80,9 +80,7 @@ App.getInitialProps = async ({ Component, ctx }: InitialPage) => {
 
   if (isEmpty(state.i18n.languages)) await fetchApp(ctx)
 
-  const pageProps = Component.getInitialProps
-    ? await Component.getInitialProps({ ...ctx })
-    : {}
+  const pageProps = Component.getInitialProps ? await Component.getInitialProps({ ...ctx }) : {}
 
   return { pageProps }
 }

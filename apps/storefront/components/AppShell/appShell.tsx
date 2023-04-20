@@ -4,7 +4,7 @@ import { CacheProvider } from '@emotion/react'
 import { useSnackbar } from 'notistack'
 
 import { theme } from '@config/theme'
-import { CssBaseline, CurrentLocale } from '@ecommerce/ui'
+import { CssBaseline, CurrentLocale } from '@ocommerce/ui'
 
 import GlobalStyled from '@components/GlobalStyled'
 import { StyledMain } from './styled'
@@ -25,8 +25,7 @@ const AppShell: FC<AppShellProps> = ({ children, cache }) => {
     }
 
     window.snackbar = {
-      open: (message: any, options: any = {}) =>
-        enqueueSnackbar(message, options),
+      open: (message: any, options: any = {}) => enqueueSnackbar(message, options),
       close: (key: any) => closeSnackbar(key)
     }
   }, [closeSnackbar, enqueueSnackbar])

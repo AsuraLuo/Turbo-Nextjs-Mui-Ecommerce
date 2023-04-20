@@ -10,7 +10,7 @@ import {
   BaseSwatchRadio,
   BaseSelect,
   LoadingButton
-} from '@ecommerce/ui'
+} from '@ocommerce/ui'
 
 import { useLoginPage } from '@hooks/LoginPage'
 

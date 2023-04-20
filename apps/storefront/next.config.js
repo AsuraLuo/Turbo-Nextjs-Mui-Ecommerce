@@ -1,4 +1,4 @@
-const baseConfig = require('@ecommerce/next-config')
+const baseConfig = require('@ocommerce/next-config')
 
 // using data from package.json
 const pkg = require('./package.json')

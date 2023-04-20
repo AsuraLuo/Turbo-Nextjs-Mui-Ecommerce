@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-import { Button } from '@ecommerce/ui'
+import { Button } from '@ocommerce/ui'
 
 const Home = () => {
   return (

@@ -4,8 +4,8 @@ import { ServerStyleSheets } from '@mui/styles'
 import { Helmet } from 'react-helmet'
 import createEmotionServer from '@emotion/server/create-instance'
 
-import { createEmotionCache } from '@ecommerce/hooks'
-import { INextHead, IGoogleWebCache } from '@ecommerce/ui'
+import { createEmotionCache } from '@ocommerce/hooks'
+import { INextHead, IGoogleWebCache } from '@ocommerce/ui'
 
 interface HeadlessProps {
   helmet: any

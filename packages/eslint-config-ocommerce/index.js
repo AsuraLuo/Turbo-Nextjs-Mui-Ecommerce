@@ -15,6 +15,7 @@ module.exports = {
     semi: ['error', 'never'],
     quotes: ['error', 'single'],
     'arrow-body-style': 0,
+    'consistent-return': 0,
     'global-require': 0,
     'import/extensions': 0,
     'import/no-unresolved': [
@@ -23,15 +24,45 @@ module.exports = {
         ignore: ['antd']
       }
     ],
+    // 'import/order': [
+    //   'error',
+    //   {
+    //     groups: ['builtin', 'external', ['internal', 'parent', 'sibling', 'index'], 'unknown'],
+    //     pathGroups: [
+    //       {
+    //         pattern: '@ocloud/**',
+    //         group: 'external',
+    //         position: 'after'
+    //       },
+    //       {
+    //         pattern: '@hooks/**',
+    //         group: 'external',
+    //         position: 'after'
+    //       },
+    //       {
+    //         pattern: '@components/**',
+    //         group: 'external',
+    //         position: 'after'
+    //       }
+    //     ],
+    //     pathGroupsExcludedImportTypes: ['builtin'],
+    //     'newlines-between': 'always',
+    //     alphabetize: {
+    //       order: 'asc',
+    //       orderImportKind: 'asc',
+    //       caseInsensitive: true
+    //     }
+    //   }
+    // ],
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 0,
-    'jsx-a11y/aria-unsupported-elements': 0,
     'no-console': ['error', { allow: ['error', 'info', 'warn'] }],
     'no-param-reassign': 0,
     'no-plusplus': 0,
     'no-useless-escape': 0,
     'no-unused-vars': 0,
     'no-restricted-exports': 0,
+    'no-restricted-syntax': ['error', 'WithStatement'],
     'prettier/prettier': [
       'error',
       {
@@ -56,7 +87,6 @@ module.exports = {
     'react/jsx-props-no-spreading': 0,
     'react/react-in-jsx-scope': 0,
     'react/require-default-props': 0,
-    'react/no-invalid-html-attribute': 0,
     '@typescript-eslint/ban-types': 0,
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/no-empty-interface': 0,

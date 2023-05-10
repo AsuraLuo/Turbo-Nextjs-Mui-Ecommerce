@@ -2,10 +2,6 @@
   "name": "turbo-nextjs-mui-ocommerce",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-customizable"

@@ -1,42 +1,54 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { Children } from 'react'
 import { ServerStyleSheets } from '@mui/styles'
-import { Helmet } from 'react-helmet'
 import createEmotionServer from '@emotion/server/create-instance'
 
 import { createEmotionCache } from '@ocommerce/hooks'
 import { INextHead, IGoogleWebCache } from '@ocommerce/ui'
 
-interface HeadlessProps {
-  helmet: any
-}
-
-class HeadlessDocument extends Document<HeadlessProps> {
-  get helmetHtmlAttrComponents() {
-    return this.props.helmet.htmlAttributes.toComponent()
-  }
-
-  get helmetBodyAttrComponents() {
-    return this.props.helmet.bodyAttributes.toComponent()
-  }
-
-  get helmetHeadComponents() {
-    return Object.keys(this.props.helmet)
-      .filter((el) => el !== 'htmlAttributes' && el !== 'bodyAttributes')
-      .map((el) => this.props.helmet[el].toComponent())
-  }
-
+class HeadlessDocument extends Document {
   render(): JSX.Element {
     return (
-      <Html {...this.helmetHtmlAttrComponents}>
+      <Html>
         <Head>
           <INextHead />
           <meta name="emotion-insertion-point" content="" />
-          {this.helmetHeadComponents}
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
         </Head>
-        <body {...this.helmetBodyAttrComponents}>
+        <body>
+          <script
+            id="__html_font_size__"
+            dangerouslySetInnerHTML={{
+              __html: `
+              !(function (e) {
+                var t = e.document,
+                  n = t.documentElement,
+                  a = 'orientationchange' in e ? 'orientationchange' : 'resize',
+                  d = function () {
+                    var e = n.getBoundingClientRect().width || 1200;
+                    e <= 1200 ? (n.style.fontSize = e / 7.5 + 'px') : (n.style.fontSize = e / 19.2 + 'px');
+                  };
+                if (t.readyState === 'loading') d();
+                document.documentElement.addEventListener("touchmove",
+                function(event) {
+                  if (event.touches.length > 1) event.preventDefault()
+                },
+                false);
+                t.addEventListener &&
+                  (e.addEventListener(a, d, !1),
+                  'interactive' === t.readyState ||
+                    t.addEventListener(
+                      'DOMContentLoaded',
+                      function () {
+                        setTimeout(d);
+                      },
+                      !1
+                    ));
+              })(window);
+              `
+            }}
+          />
           <Main />
           <NextScript />
           <IGoogleWebCache />
@@ -74,7 +86,7 @@ HeadlessDocument.getInitialProps = async (ctx) => {
 
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
-  const cache = createEmotionCache()
+  const cache = createEmotionCache({ remSize: 100 })
   const { extractCriticalToChunks } = createEmotionServer(cache)
   const jssSheets = new ServerStyleSheets()
 
@@ -113,8 +125,7 @@ HeadlessDocument.getInitialProps = async (ctx) => {
         dangerouslySetInnerHTML={{ __html: css }}
       />,
       ...Children.toArray(initialProps.styles)
-    ],
-    helmet: Helmet.renderStatic()
+    ]
   }
 }
 

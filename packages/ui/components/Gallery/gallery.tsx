@@ -1,10 +1,8 @@
 import { FC, useEffect, useState } from 'react'
 import ImageGallery from 'react-image-gallery'
 
-import { WebsiteConf } from '@config/website'
-
 import Magnifier from '../Magnifier'
-import VideoPlayer from '../VideoPlayer'
+// import VideoPlayer from '../VideoPlayer'
 import { StyledGallery, RenderItem } from './styled'
 
 interface GalleryProps {
@@ -15,8 +13,6 @@ interface GalleryProps {
   showPlayButton?: boolean
   thumbnailPosition?: string
 }
-
-const { product } = WebsiteConf
 
 const Gallery: FC<GalleryProps> = ({
   images,
@@ -44,16 +40,15 @@ const Gallery: FC<GalleryProps> = ({
         <picture>
           <img className="image-gallery-image" src={item.original} alt={item.label} />
         </picture>
-        {item.video ? (
+        {/* {item.video ? (
           <VideoPlayer url={item.video.video_url} />
-        ) : (
-          <Magnifier
-            type={product.magnifierTypes.type}
-            className="image-magnifier"
-            imageSrc={item.thumbnail}
-            largeImageSrc={item.original}
-          />
-        )}
+        ) : ( */}
+        <Magnifier
+          className="image-magnifier"
+          imageSrc={item.thumbnail}
+          largeImageSrc={item.original}
+        />
+        {/* )} */}
       </RenderItem>
     )
   }

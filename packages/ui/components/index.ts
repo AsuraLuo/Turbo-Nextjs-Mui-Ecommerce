@@ -8,7 +8,6 @@ export { default as BaseRadioGroup } from './BaseRadioGroup'
 export { default as BaseSelect } from './BaseSelect'
 export { default as BaseSwatchRadio } from './BaseSwatchRadio'
 export { default as BaseTextField } from './BaseTextField'
-export { default as BaseTinymceEditor } from './BaseTinymceEditor'
 export { default as Button } from './Button'
 
 export { default as CssBaseline } from './CssBaseline'

@@ -12,6 +12,7 @@
     }
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "build:ocommerce": "turbo run build --filter=@ocommerce/storefront",
@@ -54,6 +55,7 @@
     "eslint-config-ocommerce": "workspace:*",
     "husky": "^8.0.2",
     "lint-staged": "^13.1.0",
+    "only-allow": "^1.1.1",
     "prettier": "^2.7.1",
     "stylelint": "^13.8.0",
     "stylelint-config-prettier": "^8.0.2",
@@ -61,7 +63,7 @@
     "stylelint-order": "^4.1.0"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.8.0"
   },
   "packageManager": "pnpm@7.14.0"
 }

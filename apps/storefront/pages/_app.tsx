@@ -3,7 +3,7 @@ import { AppProps } from 'next/app'
 import { Provider as ReduxProvider } from 'react-redux'
 import { SnackbarProvider } from 'notistack'
 import { EmotionCache } from '@emotion/react'
-import { isEmpty } from 'lodash'
+import { isEmpty } from 'lodash-es'
 
 import { IConsole } from '@ocommerce/ui'
 import { createEmotionCache } from '@ocommerce/hooks'

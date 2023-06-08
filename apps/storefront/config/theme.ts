@@ -1,5 +1,11 @@
 import { createTheme } from '@mui/material/styles'
 
+// const config: any = {
+//   typography: {
+//     pxToRem: (size: number) => `${size / 100}rem`
+//   }
+// }
+
 export const theme = createTheme({
   breakpoints: {
     values: {
@@ -19,6 +25,7 @@ export const theme = createTheme({
     }
   },
   typography: {
+    htmlFontSize: 100,
     fontFamily: 'karla',
     body1: {
       fontSize: 14
@@ -27,6 +34,7 @@ export const theme = createTheme({
       marginBlockStart: 0,
       marginBlockEnd: 0
     }
+    // ...config
   },
   components: {
     MuiFormControl: {

@@ -20,7 +20,7 @@ module.exports = (pkg = {}) => {
     staticPageGenerationTimeout: 1000,
     pageExtensions: ['tsx', 'ts'],
     poweredByHeader: false,
-    reactStrictMode: true,
+    reactStrictMode: false,
     swcMinify: true,
     trailingSlash: false,
     // Use the CDN in production and localhost for development.
@@ -67,9 +67,9 @@ module.exports = (pkg = {}) => {
               } \n *  @date: ${dateformat(
                 new Date(),
                 'UTC:dddd, mmmm dS, yyyy, h:MM:ss TT'
-              )} \n *  @version: ${pkg.version} \n *  @license: ${
-                pkg.license
-              } \n *  @copyright: ${pkg.copyright} \n */\n`
+              )} \n *  @version: ${pkg.version} \n *  @license: ${pkg.license} \n *  @copyright: ${
+                pkg.copyright
+              } \n */\n`
             })
           )
         }

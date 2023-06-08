@@ -9,6 +9,7 @@ export { default as BaseSelect } from './BaseSelect'
 export { default as BaseSwatchRadio } from './BaseSwatchRadio'
 export { default as BaseTextField } from './BaseTextField'
 export { default as Button } from './Button'
+export { default as TextField } from './TextField'
 
 export { default as CssBaseline } from './CssBaseline'
 export { default as CurrentLocale } from './CurrentLocale'

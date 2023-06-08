@@ -20,11 +20,11 @@
     "mkcert:genrate": "mkcert localhost 127.0.0.1 ::1"
   },
   "dependencies": {
+    "@koa/router": "^12.0.0",
     "@ocommerce/hooks": "workspace:*",
     "@ocommerce/next-config": "workspace:*",
     "@ocommerce/tsconfig": "workspace:*",
     "@ocommerce/ui": "workspace:*",
-    "@koa/router": "^12.0.0",
     "cross-env": "^7.0.3",
     "encoding": "^0.1.13",
     "http-proxy-middleware": "^2.0.6",
@@ -33,7 +33,6 @@
     "nookies": "^2.5.2",
     "notistack": "^2.0.8",
     "pm2": "^5.2.2",
-    "spdy": "^4.0.2",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {

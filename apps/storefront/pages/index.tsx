@@ -59,7 +59,7 @@ const Home = () => {
           Login Page
         </Link>
       </div>
-      <div id="map" style={{ width: 800, height: 800 }} />
+      <div id="map" style={{ width: 800, height: 300 }} />
       <div style={{ marginBottom: 30 }}>
         <Link href="/about-us" title="About Us">
           <Button variant="contained" type="button">
@@ -70,18 +70,6 @@ const Home = () => {
       <TextField label="Hot Key" placeholder="Enter key worlds..." defaultValue="key" />
     </>
   )
-}
-
-export async function getServerSideProps() {
-  // try {
-  //   throw new Error('SSR Test 4')
-  // } catch (error) {
-  //   Sentry.captureException(error)
-  //   // Flushing before returning is necessary if deploying to Vercel, see
-  //   // https://vercel.com/docs/platform/limits#streaming-responses
-  //   await Sentry.flush(2000)
-  // }
-  return { props: {} }
 }
 
 export default Home

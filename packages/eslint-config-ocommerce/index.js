@@ -74,8 +74,19 @@ module.exports = {
         }
       }
     ],
-    'react/function-component-definition': 0,
     'react/no-danger': 0,
+    'react/no-children-prop': 0,
+    'react/prop-types': [
+      2,
+      {
+        ignore: ['children', 'className']
+      }
+    ],
+    // 为函数组件强制执行特定函数类型 (react/function-component-definition)
+    'react/function-component-definition': [
+      2,
+      { namedComponents: 'arrow-function', unnamedComponents: 'arrow-function' }
+    ],
     'react/jsx-fragments': 0,
     'react/jsx-filename-extension': [
       0,

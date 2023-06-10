@@ -1,11 +1,13 @@
 const withPWA = require('next-pwa')
 const nextCache = require('next-pwa/cache')
+const withSentry = require('@sentry/nextjs')
 const dateformat = require('dateformat')
 
 const BannerPlugin = require('./banner')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
+const isSentry = process.env.REACT_SENTRY_ENABLE === '1'
 const CDN_URL = process.env.REACT_APP_CDN_URL || undefined
 
 module.exports = (pkg = {}) => {
@@ -37,10 +39,16 @@ module.exports = (pkg = {}) => {
     typescript: {
       ignoreBuildErrors: isProd
     },
-    modularizeImports: {
-      lodash: {
-        transform: 'lodash/{{member}}'
-      }
+    sentry: {
+      // Use `hidden-source-map` rather than `source-map` as the Webpack `devtool`
+      // for client-side builds. (This will be the default starting in
+      // `@sentry/nextjs` version 8.0.0.) See
+      // https://webpack.js.org/configuration/devtool/ and
+      // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#use-hidden-source-map
+      // for more information.
+      hideSourceMaps: true,
+      disableLogger: false,
+      automaticVercelMonitors: false
     },
     async rewrites() {
       return [
@@ -109,6 +117,8 @@ module.exports = (pkg = {}) => {
       })
     )
   }
+
+  if (isSentry) plugins.push(withSentry.withSentryConfig)
 
   return plugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig })
 }

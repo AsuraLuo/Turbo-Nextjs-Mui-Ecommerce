@@ -1,11 +1,30 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import * as Sentry from '@sentry/nextjs'
 // import Script from 'next/script'
-// import { useEffect } from 'react'
+import { useEffect } from 'react'
 
 import { Button, TextField } from '@ocommerce/ui'
 
 const Home = () => {
+  useEffect(() => {
+    const transaction = Sentry.startTransaction({
+      name: 'Testing performance'
+    })
+
+    Sentry.configureScope((scope) => {
+      scope.setSpan(transaction)
+    })
+
+    try {
+      // Some operation the button does, but fails
+      throw new Error('Client Test 5')
+    } catch (error) {
+      Sentry.captureException(error)
+    } finally {
+      transaction.finish()
+    }
+  }, [])
   // const GoogleMapsCDN =
   //   'https://maps.googleapis.com/maps/api/js?key=AIzaSyDCKkZWf8J-Q023NhoipffJt4uDAWKNzFs&libraries=places&callback=initMap'
   // // &callback=Function.prototype
@@ -40,7 +59,7 @@ const Home = () => {
           Login Page
         </Link>
       </div>
-      <div id="map" style={{ width: 800, height: 800 }} />
+      <div id="map" style={{ width: 800, height: 300 }} />
       <div style={{ marginBottom: 30 }}>
         <Link href="/about-us" title="About Us">
           <Button variant="contained" type="button">

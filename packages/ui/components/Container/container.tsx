@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import Container from '@mui/material/Container'
+import type { ContainerProps } from '@mui/material/Container'
 
-import Container, { ContainerProps } from '@mui/material/Container'
-
-const HeadlessContainer: FC<ContainerProps> = ({ children, ...props }) => {
+const MuiContainer: FC<ContainerProps> = ({ children, ...props }) => {
   return <Container {...props}>{children}</Container>
 }
 
-export default HeadlessContainer
+export default MuiContainer

@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import Chip from '@mui/material/Chip'
+import type { ChipProps } from '@mui/material/Chip'
 
-import Chip, { ChipProps } from '@mui/material/Chip'
-
-const HeadlessChip: FC<ChipProps> = ({ ...props }) => {
+const MuiChip: FC<ChipProps> = ({ ...props }) => {
   return <Chip {...props} />
 }
 
-export default HeadlessChip
+export default MuiChip

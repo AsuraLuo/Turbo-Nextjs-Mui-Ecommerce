@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import Badge from '@mui/material/Badge'
+import type { BadgeProps } from '@mui/material/Badge'
 
-import Badge, { BadgeProps } from '@mui/material/Badge'
-
-const HeadlessBadge: FC<BadgeProps> = ({ children, ...props }) => {
+const MuiBadge: FC<BadgeProps> = ({ children, ...props }) => {
   return <Badge {...props}>{children}</Badge>
 }
 
-export default HeadlessBadge
+export default MuiBadge

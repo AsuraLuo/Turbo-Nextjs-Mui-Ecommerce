@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import NoSsr from '@mui/material/NoSsr'
+import type { NoSsrProps } from '@mui/material/NoSsr'
 
-import NoSsr, { NoSsrProps } from '@mui/material/NoSsr'
-
-const HeadlessNoSsr: FC<NoSsrProps> = ({ children, ...props }) => {
+const MuiNoSsr: FC<NoSsrProps> = ({ children, ...props }) => {
   return <NoSsr {...props}>{children}</NoSsr>
 }
 
-export default HeadlessNoSsr
+export default MuiNoSsr

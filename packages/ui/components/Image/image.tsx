@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/aria-unsupported-elements */
 import { FC } from 'react'
 import LazyLoad from 'react-lazyload'
 

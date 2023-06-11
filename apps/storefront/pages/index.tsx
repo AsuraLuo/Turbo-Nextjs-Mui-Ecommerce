@@ -4,7 +4,7 @@ import Link from 'next/link'
 // import Script from 'next/script'
 // import { useEffect } from 'react'
 
-import { Button, TextField } from '@ocommerce/ui'
+import { Button } from '@ocommerce/ui'
 
 const Home = () => {
   // useEffect(() => {
@@ -72,7 +72,7 @@ const Home = () => {
           </Button>
         </Link>
       </div>
-      <TextField label="Hot Key" placeholder="Enter key worlds..." defaultValue="key" />
+      {/* <TextField label="Hot Key" placeholder="Enter key worlds..." defaultValue="key" /> */}
     </>
   )
 }

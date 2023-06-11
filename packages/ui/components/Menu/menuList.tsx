@@ -1,8 +1,8 @@
 import { FC, forwardRef } from 'react'
+import MenuList from '@mui/material/MenuList'
+import type { MenuListProps } from '@mui/material/MenuList'
 
-import MenuList, { MenuListProps } from '@mui/material/MenuList'
-
-const HeadlessMenuList: FC<MenuListProps> = forwardRef(
+const MuiMenuList: FC<MenuListProps> = forwardRef(
   // eslint-disable-next-line react/prop-types
   ({ children, ...props }, ref) => {
     return (
@@ -13,6 +13,6 @@ const HeadlessMenuList: FC<MenuListProps> = forwardRef(
   }
 )
 
-HeadlessMenuList.displayName = 'MenuList'
+MuiMenuList.displayName = 'MenuList'
 
-export { HeadlessMenuList }
+export { MuiMenuList }

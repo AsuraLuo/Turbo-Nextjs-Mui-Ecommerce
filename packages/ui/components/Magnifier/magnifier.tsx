@@ -5,12 +5,6 @@ import {
   Magnifier as RIMagnifier
 } from 'react-image-magnifiers'
 
-const WebsiteConf = {
-  product: {
-    magnifierTypes: 'magnifier'
-  }
-}
-
 interface MagnifierProps {
   className?: string
   imageSrc: string
@@ -19,23 +13,15 @@ interface MagnifierProps {
   type?: string
 }
 
-const {
-  product: { magnifierTypes }
-} = WebsiteConf
-const { magnifier, glassMagnifier, sideBySideMagnifier } = magnifierTypes
-
 const MagnifierTypes: any = {
   magnifier: {
-    Component: RIMagnifier,
-    ...magnifier
+    Component: RIMagnifier
   },
   glassMagnifier: {
-    Component: GlassMagnifier,
-    ...glassMagnifier
+    Component: GlassMagnifier
   },
   sideBySideMagnifier: {
-    Component: SideBySideMagnifier,
-    ...sideBySideMagnifier
+    Component: SideBySideMagnifier
   }
 }
 

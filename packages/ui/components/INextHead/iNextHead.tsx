@@ -1,4 +1,3 @@
-/* eslint-disable react/no-invalid-html-attribute */
 import { FC } from 'react'
 
 interface AppleImage {
@@ -89,6 +88,7 @@ const INextHead: FC<INextHeadProps> = ({
           {startupImages.map((image: AppleImage) => {
             return (
               <link
+                // eslint-disable-next-line react/no-invalid-html-attribute
                 rel="apple-touch-startup-image"
                 key={image.media}
                 href={image.url}

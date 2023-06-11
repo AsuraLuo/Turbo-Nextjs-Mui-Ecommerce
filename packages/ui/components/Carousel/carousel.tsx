@@ -10,7 +10,6 @@ interface CarouselProps extends Settings {
   prevArrowIcon?: any
 }
 
-// eslint-disable-next-line react/prop-types
 const Carousel: FC<CarouselProps> = forwardRef(({ children, ...props }, ref) => {
   const settings: any = {
     arrows: true,

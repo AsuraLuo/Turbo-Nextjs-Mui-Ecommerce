@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import Drawer from '@mui/material/Drawer'
+import type { DrawerProps } from '@mui/material/Drawer'
 
-import Drawer, { DrawerProps } from '@mui/material/Drawer'
-
-const HeadlessDrawer: FC<DrawerProps> = ({ children, ...props }) => {
+const MuiDrawer: FC<DrawerProps> = ({ children, ...props }) => {
   return <Drawer {...props}>{children}</Drawer>
 }
 
-export default HeadlessDrawer
+export default MuiDrawer

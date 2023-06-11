@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import Collapse from '@mui/material/Collapse'
+import type { CollapseProps } from '@mui/material/Collapse'
 
-import Collapse, { CollapseProps } from '@mui/material/Collapse'
-
-const HeadlessCollapse: FC<CollapseProps> = ({ children, ...props }) => {
+const MuiCollapse: FC<CollapseProps> = ({ children, ...props }) => {
   return <Collapse {...props}>{children}</Collapse>
 }
 
-export default HeadlessCollapse
+export default MuiCollapse

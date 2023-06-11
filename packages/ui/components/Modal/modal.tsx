@@ -1,9 +1,9 @@
 import { FC } from 'react'
+import Modal from '@mui/material/Modal'
+import type { ModalProps } from '@mui/material/Modal'
 
-import Modal, { ModalProps } from '@mui/material/Modal'
-
-const HeadlessModal: FC<ModalProps> = ({ children, ...props }) => {
+const MuiModal: FC<ModalProps> = ({ children, ...props }) => {
   return <Modal {...props}>{children}</Modal>
 }
 
-export default HeadlessModal
+export default MuiModal

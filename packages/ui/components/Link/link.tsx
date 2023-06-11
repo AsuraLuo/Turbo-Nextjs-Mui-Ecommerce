@@ -1,12 +1,12 @@
 import clsx from 'clsx'
 import { useRouter } from 'next/router'
 import { AnchorHTMLAttributes, forwardRef } from 'react'
-import NextLink, { LinkProps as NextLinkProps } from 'next/link'
-import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link'
-import styled from '@emotion/styled'
+import NextLink from 'next/link'
+import MuiLink from '@mui/material/Link'
+import type { LinkProps as NextLinkProps } from 'next/link'
+import type { LinkProps as MuiLinkProps } from '@mui/material/Link'
 
-// Add support for the sx prop for consistency with the other branches.
-const Anchor = styled('a')({})
+import { StyledAnchor } from './styled'
 
 interface NextLinkComposedProps
   extends Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
@@ -29,7 +29,7 @@ const NextLinkComposed = forwardRef<HTMLAnchorElement, NextLinkComposedProps>(
         passHref
         locale={locale}
       >
-        <Anchor ref={ref} {...other} />
+        <StyledAnchor ref={ref} {...other} />
       </NextLink>
     )
   }
@@ -72,7 +72,7 @@ const Link = forwardRef<HTMLAnchorElement, LinkProps>(function Link(props, ref) 
 
   if (isExternal) {
     if (noLinkStyle) {
-      return <Anchor className={className} href={href} ref={ref} {...other} />
+      return <StyledAnchor className={className} href={href} ref={ref} {...other} />
     }
 
     return <MuiLink className={className} href={href} ref={ref} {...other} />

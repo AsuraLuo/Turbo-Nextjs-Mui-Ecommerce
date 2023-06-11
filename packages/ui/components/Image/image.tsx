@@ -1,10 +1,9 @@
 import { FC } from 'react'
-import LazyLoad from 'react-lazyload'
+import LazyLoad, { LazyLoadProps } from 'react-lazyload'
 
-interface ImageProps {
+interface ImageProps extends LazyLoadProps {
   src: string
   alt?: string
-  className?: string
   onClick?: any
 }
 

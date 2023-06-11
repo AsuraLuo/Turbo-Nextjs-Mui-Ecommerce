@@ -1,30 +1,35 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import * as Sentry from '@sentry/nextjs'
+// import * as Sentry from '@sentry/nextjs'
 // import Script from 'next/script'
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 
 import { Button, TextField } from '@ocommerce/ui'
 
 const Home = () => {
-  useEffect(() => {
-    const transaction = Sentry.startTransaction({
-      name: 'Testing performance'
-    })
+  // useEffect(() => {
+  //   const transaction = Sentry.startTransaction({
+  //     name: 'Testing performance'
+  //   })
 
-    Sentry.configureScope((scope) => {
-      scope.setSpan(transaction)
-    })
+  //   Sentry.configureScope((scope) => {
+  //     scope.setSpan(transaction)
+  //   })
 
-    try {
-      // Some operation the button does, but fails
-      throw new Error('Client Test 5')
-    } catch (error) {
-      Sentry.captureException(error)
-    } finally {
-      transaction.finish()
-    }
-  }, [])
+  //   try {
+  //     // Some operation the button does, but fails
+  //     throw new Error('Client Test 5')
+  //   } catch (error) {
+  //     Sentry.captureException(error)
+  //   } finally {
+  //     transaction.finish()
+  //   }
+  // }, [])
+  // Sentry.withScope((scope) => {
+  //   scope.setLevel('warning')
+  //   Sentry.captureException(err)
+  // })
+
   // const GoogleMapsCDN =
   //   'https://maps.googleapis.com/maps/api/js?key=AIzaSyDCKkZWf8J-Q023NhoipffJt4uDAWKNzFs&libraries=places&callback=initMap'
   // // &callback=Function.prototype

@@ -22,5 +22,15 @@ Sentry.init({
       maskAllInputs: true,
       blockAllMedia: true
     })
-  ]
+  ],
+  beforeSend(event) {
+    // Check if it is an exception, if so, show the report dialog
+    if (typeof window !== 'undefined' && event.exception) {
+      Sentry.showReportDialog({
+        eventId: event.event_id
+      })
+    }
+
+    return event
+  }
 })

@@ -1,7 +1,9 @@
 import { FC } from 'react'
+import AccordionSummary from '@mui/material/AccordionSummary'
+import type { AccordionSummaryProps } from '@mui/material/AccordionSummary'
 
-import AccordionSummary, { AccordionSummaryProps } from '@mui/material/AccordionSummary'
-
-export const MuiAccordionSummary: FC<AccordionSummaryProps> = ({ children, ...props }) => {
+const MuiAccordionSummary: FC<AccordionSummaryProps> = ({ children, ...props }) => {
   return <AccordionSummary {...props}>{children}</AccordionSummary>
 }
+
+export default MuiAccordionSummary

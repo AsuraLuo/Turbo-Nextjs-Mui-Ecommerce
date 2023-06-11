@@ -1,5 +1,3 @@
-import { MuiAccordion as Accordion } from './accordion'
-import { MuiAccordionDetails as AccordionDetails } from './details'
-import { MuiAccordionSummary as AccordionSummary } from './summary'
-
-export { Accordion, AccordionDetails, AccordionSummary }
+export { default as Accordion } from './accordion'
+export { default as AccordionDetails } from './details'
+export { default as AccordionSummary } from './summary'

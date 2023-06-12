@@ -26,7 +26,6 @@
     "@ocommerce/tsconfig": "workspace:*",
     "@ocommerce/ui": "workspace:*",
     "cross-env": "^7.0.3",
-    "encoding": "^0.1.13",
     "http-proxy-middleware": "^2.0.6",
     "koa": "^2.14.1",
     "next": "^13.1.1",

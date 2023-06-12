@@ -12,7 +12,6 @@ const MuiMenuList: FC<MenuListProps> = forwardRef(
     )
   }
 )
-
 MuiMenuList.displayName = 'MenuList'
 
-export { MuiMenuList }
+export default MuiMenuList

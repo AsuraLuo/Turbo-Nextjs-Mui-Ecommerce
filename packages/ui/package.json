@@ -1,7 +1,9 @@
 {
   "name": "@ocommerce/ui",
   "version": "0.1.0",
-  "main": "./components/index.ts",
+  "main": "dist/es/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/es/index.d.ts",
   "license": "MIT",
   "description": "Ocommerce Ui Base On Mui",
   "scripts": {
@@ -25,6 +27,7 @@
     "react-images-uploading": "^3.1.7",
     "react-lazyload": "^3.2.0",
     "react-mui-dropzone": "^4.0.6",
+    "react-player": "^2.12.0",
     "react-slick": "^0.29.0"
   },
   "devDependencies": {

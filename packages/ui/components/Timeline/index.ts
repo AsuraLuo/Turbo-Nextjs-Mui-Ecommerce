@@ -1,3 +1,1 @@
-/*
- * @Copyright: @ Apax Software Corp. All Rights Reserved
- */
+export { default } from './timeline'

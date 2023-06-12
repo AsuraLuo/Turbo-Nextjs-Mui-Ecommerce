@@ -1,5 +1,3 @@
-import { MuiMenu as Menu } from './menu'
-import { MuiMenuItem as MenuItem } from './menuItem'
-import { MuiMenuList as MenuList } from './menuList'
-
-export { Menu, MenuItem, MenuList }
+export { default as Menu } from './menu'
+export { default as MenuItem } from './menuItem'
+export { default as MenuList } from './menuList'

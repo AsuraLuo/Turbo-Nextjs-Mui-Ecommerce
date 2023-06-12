@@ -1,7 +1,5 @@
-import { MuiDialog as Dialog } from './dialog'
-import { MuiDialogActions as DialogActions } from './dialogActions'
-import { MuiDialogContent as DialogContent } from './dialogContent'
-import { MuiDialogContentText as DialogContentText } from './dialogContentText'
-import { MuiDialogTitle as DialogTitle } from './dialogTitle'
-
-export { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle }
+export { default as Dialog } from './dialog'
+export { default as DialogActions } from './dialogActions'
+export { default as DialogContent } from './dialogContent'
+export { default as DialogContentText } from './dialogContentText'
+export { default as DialogTitle } from './dialogTitle'

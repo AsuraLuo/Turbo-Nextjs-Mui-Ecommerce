@@ -1,4 +1,3 @@
-// import fs from 'fs'
 import next from 'next'
 import Koa from 'koa'
 import Router from '@koa/router'
@@ -13,10 +12,6 @@ const handle = app.getRequestHandler()
 app.prepare().then(() => {
   const server = new Koa()
   const router = new Router()
-  // const options: any = {
-  //   key: fs.readFileSync('keys/ocommerce-key.pem'),
-  //   cert: fs.readFileSync('keys/ocommerce-cert.pem')
-  // }
 
   router.all('(.*)', async (ctx: ParameterizedContext) => {
     const { req, res } = ctx

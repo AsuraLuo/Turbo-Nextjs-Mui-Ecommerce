@@ -124,7 +124,7 @@ export const useLoginPage = () => {
     console.info(values)
     setTimeout(() => {
       setLoading(false)
-    }, 3000)
+    }, 1000)
   })
 
   return {

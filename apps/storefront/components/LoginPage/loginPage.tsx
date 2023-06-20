@@ -37,7 +37,7 @@ const LoginPage = () => {
         <BaseTextField
           name="email"
           label="Email"
-          // required
+          required
           control={control}
           errors={errors}
           // validate={handleValidEmail}
@@ -45,7 +45,7 @@ const LoginPage = () => {
         <BasePassword
           name="password"
           label="Password"
-          // required
+          required
           control={control}
           errors={errors}
           // validate={handleValidPassword}
@@ -63,7 +63,7 @@ const LoginPage = () => {
         <BaseImagesUpload
           name="images"
           label="Images"
-          required
+          // required
           control={control}
           errors={errors}
           setValue={setValue}
@@ -120,7 +120,8 @@ const LoginPage = () => {
           size="large"
           fullWidth
           loading={loading}
-          loadingIndicator={<span>Submit ...</span>}>
+          loadingIndicator={<span>Submit ...</span>}
+        >
           <span>Submit</span>
         </LoadingButton>
       </form>

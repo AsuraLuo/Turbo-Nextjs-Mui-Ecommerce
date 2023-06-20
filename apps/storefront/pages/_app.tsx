@@ -23,7 +23,7 @@ interface HeadlessProps extends AppProps {
 }
 
 // Client-side cache, shared for the whole session of the user in the browser.
-const clientEmotionCache = createEmotionCache({ remSize: 100 })
+const clientEmotionCache = createEmotionCache()
 const isProd: boolean = process.env.NODE_ENV === 'production'
 
 const App = ({

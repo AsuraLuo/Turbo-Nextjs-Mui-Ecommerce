@@ -25,7 +25,7 @@ export const theme = createTheme({
     }
   },
   typography: {
-    htmlFontSize: 100,
+    // htmlFontSize: 100,
     fontFamily: 'karla',
     body1: {
       fontSize: 14
@@ -40,7 +40,7 @@ export const theme = createTheme({
     MuiFormControl: {
       styleOverrides: {
         root: {
-          marginBottom: 0.16
+          marginBottom: 16
         }
       }
     }

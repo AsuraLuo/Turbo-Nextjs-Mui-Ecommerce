@@ -17,7 +17,7 @@ class HeadlessDocument extends Document {
           {(this.props as any).emotionStyleTags}
         </Head>
         <body>
-          <script
+          {/* <script
             id="__html_font_size__"
             dangerouslySetInnerHTML={{
               __html: `
@@ -48,7 +48,7 @@ class HeadlessDocument extends Document {
               })(window);
               `
             }}
-          />
+          /> */}
           <Main />
           <NextScript />
           <IGoogleWebCache />
@@ -86,7 +86,7 @@ HeadlessDocument.getInitialProps = async (ctx) => {
 
   // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
   // However, be aware that it can have global side effects.
-  const cache = createEmotionCache({ remSize: 100 })
+  const cache = createEmotionCache()
   const { extractCriticalToChunks } = createEmotionServer(cache)
   const jssSheets = new ServerStyleSheets()
 

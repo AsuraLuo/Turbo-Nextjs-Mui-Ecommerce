@@ -50,14 +50,18 @@ const BaseTextField: FC<BaseTextFieldProps> = ({
   return (
     <Controller
       {...controllerProps}
-      render={({ field }) => (
-        <TextField
-          {...field}
-          {...textField}
-          error={!!errors[name]}
-          helperText={(errors as any)[name] ? (errors as any)[name].message : null}
-        />
-      )}
+      render={({ field }) => {
+        const { value, ...params } = field
+        return (
+          <TextField
+            {...params}
+            {...textField}
+            value={value || undefined}
+            error={!!errors[name]}
+            helperText={(errors as any)[name] ? (errors as any)[name].message : null}
+          />
+        )
+      }}
     />
   )
 }

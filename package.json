@@ -26,6 +26,7 @@
     "clean:turbo-cache": "rm -rf ./node_modules/.cache"
   },
   "dependencies": {
+    "@emotion/babel-plugin": "^11.11.0",
     "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.5",
     "@emotion/server": "^11.10.0",
@@ -34,6 +35,7 @@
     "@mui/lab": "5.0.0-alpha.114",
     "@mui/material": "^5.11.2",
     "@mui/styles": "^5.11.2",
+    "@mui/system": "^5.13.6",
     "@reduxjs/toolkit": "^1.9.1",
     "@sentry/nextjs": "^7.54.0",
     "clsx": "^1.2.1",

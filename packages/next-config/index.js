@@ -19,12 +19,11 @@ module.exports = (pkg = {}) => {
     compress: false,
     distDir: '.next',
     generateEtags: false,
-    staticPageGenerationTimeout: 1000,
     pageExtensions: ['tsx', 'ts'],
     poweredByHeader: false,
     reactStrictMode: false,
     swcMinify: true,
-    trailingSlash: false,
+    trailingSlash: true,
     // Use the CDN in production and localhost for development.
     assetPrefix: isProd ? CDN_URL : undefined,
     transpilePackages: ['lodash-es', '@ocommerce/ui'],
@@ -80,7 +79,7 @@ module.exports = (pkg = {}) => {
         }
       ]
     },
-    webpack: (config, { isServer }) => {
+    webpack: (config, { isServer, webpack }) => {
       // Client webpack conifg
       if (!isServer) {
         // Attention: It must be placed after terserplugin, otherwise the generated annotation description will be cleared by terserplugin or other compression plug-ins
@@ -100,6 +99,14 @@ module.exports = (pkg = {}) => {
           )
         }
       }
+
+      // Sentry webpack tree shaking
+      config.plugins.push(
+        new webpack.DefinePlugin({
+          __SENTRY_DEBUG__: false,
+          __SENTRY_TRACING__: false
+        })
+      )
 
       // Important: return the modified config
       return config

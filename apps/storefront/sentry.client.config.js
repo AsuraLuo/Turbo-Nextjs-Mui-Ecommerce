@@ -1,11 +1,11 @@
 // This file configures the initialization of Sentry on the browser.
 // The config you add here will be used whenever a page is visited.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
-import * as Sentry from '@sentry/nextjs'
+import { init, BrowserTracing, Replay, showReportDialog } from '@sentry/nextjs'
 
 const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
 
-Sentry.init({
+init({
   dsn: SENTRY_DSN,
   environment: process.env.NODE_ENV === 'production' ? 'prod' : 'dev',
   // Performance Monitoring
@@ -14,11 +14,11 @@ Sentry.init({
   replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
   replaysOnErrorSampleRate: 1.0, // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
   integrations: [
-    new Sentry.BrowserTracing({
+    new BrowserTracing({
       // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
       tracePropagationTargets: []
     }),
-    new Sentry.Replay({
+    new Replay({
       maskAllText: true,
       maskAllInputs: true,
       blockAllMedia: true
@@ -27,7 +27,7 @@ Sentry.init({
   beforeSend(event) {
     // Check if it is an exception, if so, show the report dialog
     if (typeof window !== 'undefined' && event.exception) {
-      Sentry.showReportDialog({
+      showReportDialog({
         eventId: event.event_id
       })
     }

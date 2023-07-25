@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import * as Sentry from '@sentry/nextjs'
+import { captureException, flush } from '@sentry/nextjs'
 
 const AboutUs = () => {
   return (
@@ -18,11 +18,10 @@ export async function getServerSideProps() {
   try {
     throw new Error('SSR Test Errors')
   } catch (error) {
-    Sentry.captureException(error)
-
+    captureException(error)
     // Flushing before returning is necessary if deploying to Vercel, see
     // https://vercel.com/docs/platform/limits#streaming-responses
-    await Sentry.flush(2000)
+    await flush(2000)
   }
 
   return { props: {} }

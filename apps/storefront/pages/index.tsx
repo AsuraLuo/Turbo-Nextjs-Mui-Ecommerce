@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
-// import * as Sentry from '@sentry/nextjs'
+// import { configureScope, captureException, startTransaction, withScope } from '@sentry/nextjs'
 // import Script from 'next/script'
 // import { useEffect } from 'react'
 // import { styled } from '@mui/material/styles'
@@ -17,11 +17,11 @@ const StyledComponent = styled('div')({
 
 const Home = () => {
   // useEffect(() => {
-  //   const transaction = Sentry.startTransaction({
+  //   const transaction = startTransaction({
   //     name: 'Testing performance'
   //   })
 
-  //   Sentry.configureScope((scope) => {
+  //   configureScope((scope) => {
   //     scope.setSpan(transaction)
   //   })
 
@@ -29,14 +29,14 @@ const Home = () => {
   //     // Some operation the button does, but fails
   //     throw new Error('Client Test 5')
   //   } catch (error) {
-  //     Sentry.captureException(error)
+  //     captureException(error)
   //   } finally {
   //     transaction.finish()
   //   }
   // }, [])
-  // Sentry.withScope((scope) => {
+  // withScope((scope) => {
   //   scope.setLevel('warning')
-  //   Sentry.captureException(err)
+  //   captureException(err)
   // })
 
   // const GoogleMapsCDN =

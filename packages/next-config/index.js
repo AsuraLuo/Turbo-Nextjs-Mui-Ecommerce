@@ -56,14 +56,6 @@ module.exports = (pkg = {}) => {
     typescript: {
       ignoreBuildErrors: isProd
     },
-    sentry: {
-      // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#use-hidden-source-map
-      hideSourceMaps: true,
-      disableLogger: false,
-      automaticVercelMonitors: false,
-      disableServerWebpackPlugin: true,
-      disableClientWebpackPlugin: true
-    },
     async rewrites() {
       return [
         {
@@ -154,7 +146,22 @@ module.exports = (pkg = {}) => {
   }
 
   if (isSentry)
-    plugins.push((config) => withSentry.withSentryConfig(config, sentryWebpackPluginOptions))
+    plugins.push((config) =>
+      withSentry.withSentryConfig(
+        {
+          ...config,
+          sentry: {
+            // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#use-hidden-source-map
+            hideSourceMaps: true,
+            disableLogger: false,
+            automaticVercelMonitors: false,
+            disableServerWebpackPlugin: true,
+            disableClientWebpackPlugin: true
+          }
+        },
+        sentryWebpackPluginOptions
+      )
+    )
 
   return plugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig })
 }

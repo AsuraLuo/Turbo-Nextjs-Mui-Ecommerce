@@ -31,7 +31,7 @@ module.exports = (pkg = {}) => {
       reactRemoveProperties: isProd,
       removeConsole: isProd,
       emotion: {
-        sourceMap: true,
+        sourceMap: !isProd,
         autoLabel: 'dev-only',
         labelFormat: '[local]',
         importMap: {
@@ -102,19 +102,6 @@ module.exports = (pkg = {}) => {
     }
   }
 
-  const sentryWebpackPluginOptions = {
-    // Additional config options for the Sentry Webpack plugin. Keep in mind that
-    org: 'example-org',
-    project: 'example-project',
-    // An auth token is required for uploading source maps.
-    // You can get an auth token from https://sentry.io/settings/account/api/auth-tokens/
-    // The token must have `project:releases` and `org:read` scopes for uploading source maps
-    authToken: process.env.SENTRY_AUTH_TOKEN,
-    silent: true // Suppresses all logs
-    // For all available options, see:
-    // https://github.com/getsentry/sentry-webpack-plugin#options.
-  }
-
   const plugins = []
 
   if (isAnalyzer)
@@ -145,7 +132,19 @@ module.exports = (pkg = {}) => {
     )
   }
 
-  if (isSentry)
+  if (isSentry) {
+    const sentryWebpackPluginOptions = {
+      // Additional config options for the Sentry Webpack plugin. Keep in mind that
+      org: 'example-org',
+      project: 'example-project',
+      // An auth token is required for uploading source maps.
+      // You can get an auth token from https://sentry.io/settings/account/api/auth-tokens/
+      // The token must have `project:releases` and `org:read` scopes for uploading source maps
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+      silent: true // Suppresses all logs
+      // For all available options, see:
+      // https://github.com/getsentry/sentry-webpack-plugin#options.
+    }
     plugins.push((config) =>
       withSentry.withSentryConfig(
         {
@@ -162,6 +161,7 @@ module.exports = (pkg = {}) => {
         sentryWebpackPluginOptions
       )
     )
+  }
 
   return plugins.reduce((acc, plugin) => plugin(acc), { ...nextConfig })
 }

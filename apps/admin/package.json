@@ -1,0 +1,29 @@
+{
+  "name": "@ocommerce/storefront",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ocommerce/hooks": "workspace:*",
+    "@ocommerce/tsconfig": "workspace:*",
+    "@ocommerce/ui": "workspace:*",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.9.0",
+    "vite": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.1.4",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "eslint": "^7.32.0",
+    "eslint-config-ocommerce": "workspace:*",
+    "typescript": "^5.0.2"
+  }
+}

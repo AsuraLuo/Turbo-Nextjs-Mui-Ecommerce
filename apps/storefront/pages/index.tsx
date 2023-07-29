@@ -4,16 +4,8 @@ import Link from 'next/link'
 // import Script from 'next/script'
 // import { useEffect } from 'react'
 // import { styled } from '@mui/material/styles'
-import { styled } from '@mui/system'
 
 import { Button } from '@ocommerce/ui'
-
-const StyledComponent = styled('div')({
-  color: 'darkslategray',
-  backgroundColor: 'aliceblue',
-  padding: 8,
-  borderRadius: 4
-})
 
 const Home = () => {
   // useEffect(() => {
@@ -68,7 +60,6 @@ const Home = () => {
         }}
         strategy="lazyOnload"
       /> */}
-      <StyledComponent>123</StyledComponent>
       <div>
         <Link href="/login" title="Login Page">
           Login Page

@@ -7,7 +7,7 @@ import { isEmpty } from 'lodash-es'
 
 import { IConsole } from '@ocommerce/ui'
 import { createEmotionCache } from '@ocommerce/hooks'
-import { withRedux, LocaleContextProvider } from '@provider/index'
+import { withRedux, I18nContextProvider } from '@provider/index'
 import { fetchApp } from '@hooks/App'
 
 import AppShell from '@components/AppShell'
@@ -62,11 +62,11 @@ const App = ({
           autoHideDuration={5000}
           anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
         >
-          <LocaleContextProvider>
+          <I18nContextProvider>
             <AppShell cache={emotionCache}>
               <Component {...pageProps} />
             </AppShell>
-          </LocaleContextProvider>
+          </I18nContextProvider>
         </SnackbarProvider>
       </ReduxProvider>
       {!isProd && <IConsole />}

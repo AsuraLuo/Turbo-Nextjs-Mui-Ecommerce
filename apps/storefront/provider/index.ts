@@ -1,4 +1,4 @@
-import LocaleContextProvider from './i18n'
+import I18nContextProvider from './i18n'
 import { withRedux } from './redux'
 
-export { LocaleContextProvider, withRedux }
+export { I18nContextProvider, withRedux }

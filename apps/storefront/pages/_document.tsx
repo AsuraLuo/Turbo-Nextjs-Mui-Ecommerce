@@ -4,51 +4,18 @@ import { ServerStyleSheets } from '@mui/styles'
 import createEmotionServer from '@emotion/server/create-instance'
 
 import { createEmotionCache } from '@ocommerce/hooks'
-import { INextHead, IGoogleWebCache } from '@ocommerce/ui'
+import { IGoogleWebCache } from '@ocommerce/ui'
 
 class HeadlessDocument extends Document {
   render(): JSX.Element {
     return (
       <Html>
         <Head>
-          <INextHead />
           <meta name="emotion-insertion-point" content="" />
           {/* Inject MUI styles first to match with the prepend: true configuration. */}
           {(this.props as any).emotionStyleTags}
         </Head>
         <body>
-          {/* <script
-            id="__html_font_size__"
-            dangerouslySetInnerHTML={{
-              __html: `
-              !(function (e) {
-                var t = e.document,
-                  n = t.documentElement,
-                  a = 'orientationchange' in e ? 'orientationchange' : 'resize',
-                  d = function () {
-                    var e = n.getBoundingClientRect().width || 1200;
-                    e <= 1200 ? (n.style.fontSize = e / 7.5 + 'px') : (n.style.fontSize = e / 19.2 + 'px');
-                  };
-                if (t.readyState === 'loading') d();
-                document.documentElement.addEventListener("touchmove",
-                function(event) {
-                  if (event.touches.length > 1) event.preventDefault()
-                },
-                false);
-                t.addEventListener &&
-                  (e.addEventListener(a, d, !1),
-                  'interactive' === t.readyState ||
-                    t.addEventListener(
-                      'DOMContentLoaded',
-                      function () {
-                        setTimeout(d);
-                      },
-                      !1
-                    ));
-              })(window);
-              `
-            }}
-          /> */}
           <Main />
           <NextScript />
           <IGoogleWebCache />

@@ -51,12 +51,12 @@ const BaseTextField: FC<BaseTextFieldProps> = ({
     <Controller
       {...controllerProps}
       render={({ field }) => {
-        const { value, ...params } = field
+        // const { value, ...params } = field
         return (
           <TextField
-            {...params}
+            {...field}
             {...textField}
-            value={value || undefined}
+            // value={value || undefined}
             error={!!errors[name]}
             helperText={(errors as any)[name] ? (errors as any)[name].message : null}
           />

@@ -13,14 +13,14 @@ class Locale extends Component {
     return false
   }
 }
-const CurrentLocale: any = Locale
 
-export default injectIntl(CurrentLocale)
+export default injectIntl(Locale)
 
 export const intl = () => {
-  return CurrentLocale.instance?.props.intl
+  return Locale.instance?.props.intl
 }
 
 export const formatMessage = (...args: any[]) => {
   return intl().formatMessage(...args)
+  return {}
 }

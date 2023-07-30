@@ -1,9 +1,8 @@
 import { useCallback, useMemo } from 'react'
 import type { FocusEvent, KeyboardEvent } from 'react'
-import type { InputBaseProps } from '@mui/material/InputBase'
 
-export const useInputSpace = (props: InputBaseProps['inputProps']) => {
-  const { onBlur, onChange, onKeyDown } = props ?? {}
+export const useInputSpace = (props: any) => {
+  const { onBlur, onChange, onKeyDown, ...rest } = props ?? {}
   const pressEnterFlag = false
 
   const regex: RegExp = useMemo(() => {
@@ -37,10 +36,12 @@ export const useInputSpace = (props: InputBaseProps['inputProps']) => {
 
   const inputSpaceEvent = useMemo(
     () => ({
+      ...rest,
+      onChange,
       onBlur: handleTrimSpace,
       onKeyDown: handleKeydown
     }),
-    [handleKeydown, handleTrimSpace]
+    [rest, onChange, handleTrimSpace, handleKeydown]
   )
 
   return {

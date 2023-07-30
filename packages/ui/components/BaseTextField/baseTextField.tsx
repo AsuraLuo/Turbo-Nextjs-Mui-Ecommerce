@@ -1,7 +1,9 @@
 import { FC } from 'react'
-import { Controller, FieldErrors } from 'react-hook-form'
-import { TextField, StandardTextFieldProps } from '@mui/material'
+import { Controller } from 'react-hook-form'
+import type { StandardTextFieldProps } from '@mui/material/TextField'
+import type { FieldErrors } from 'react-hook-form'
 
+import TextField from '../TextField'
 import { formatMessage } from '../CurrentLocale'
 
 interface BaseTextFieldProps extends StandardTextFieldProps {

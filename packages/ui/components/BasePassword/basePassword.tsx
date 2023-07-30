@@ -1,9 +1,10 @@
 import { FC, useState, MouseEvent } from 'react'
 import { Controller, FieldErrors } from 'react-hook-form'
-import { InputAdornment, IconButton, TextField, StandardTextFieldProps } from '@mui/material'
+import { InputAdornment, IconButton, StandardTextFieldProps } from '@mui/material'
 import Visibility from '@mui/icons-material/Visibility'
 import VisibilityOff from '@mui/icons-material/VisibilityOff'
 
+import TextField from '../TextField'
 import { formatMessage } from '../CurrentLocale'
 
 interface BasePasswordProps extends StandardTextFieldProps {

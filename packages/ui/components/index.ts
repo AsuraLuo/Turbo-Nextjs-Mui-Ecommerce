@@ -46,6 +46,7 @@ export { default as Tooltip } from './Tooltip'
 export { createTheme, createStyles } from '@mui/material/styles'
 
 // Business components
+export { default as BaseAutoComplete } from './BaseAutoComplete'
 export { default as BaseCheckbox } from './BaseCheckbox'
 export { default as BaseDatePicker } from './BaseDatePicker'
 export { default as BaseFileUpload } from './BaseFileUpload'

@@ -23,7 +23,7 @@ module.exports = (pkg = {}) => {
     poweredByHeader: false,
     reactStrictMode: false,
     swcMinify: true,
-    trailingSlash: true,
+    trailingSlash: false,
     // Use the CDN in production and localhost for development.
     assetPrefix: isProd ? CDN_URL : undefined,
     transpilePackages: ['lodash-es', '@ocommerce/ui'],

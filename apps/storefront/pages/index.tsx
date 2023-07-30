@@ -66,7 +66,7 @@ const Home = () => {
         </Link>
       </div>
       <div style={{ marginBottom: 30 }}>
-        <Link href="/about-us" title="About Us">
+        <Link href="/About-Us" title="About Us">
           <Button variant="contained" type="button">
             About Us
           </Button>

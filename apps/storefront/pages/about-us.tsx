@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { captureException, flush } from '@sentry/nextjs'
+// import { captureException, flush } from '@sentry/nextjs'
 
 const AboutUs = () => {
   return (
@@ -15,14 +15,14 @@ const AboutUs = () => {
 }
 
 export async function getServerSideProps() {
-  try {
-    throw new Error('SSR Test Errors')
-  } catch (error) {
-    captureException(error)
-    // Flushing before returning is necessary if deploying to Vercel, see
-    // https://vercel.com/docs/platform/limits#streaming-responses
-    await flush(2000)
-  }
+  // try {
+  //   throw new Error('SSR Test Errors')
+  // } catch (error) {
+  //   captureException(error)
+  //   // Flushing before returning is necessary if deploying to Vercel, see
+  //   // https://vercel.com/docs/platform/limits#streaming-responses
+  //   await flush(2000)
+  // }
 
   return { props: {} }
 }

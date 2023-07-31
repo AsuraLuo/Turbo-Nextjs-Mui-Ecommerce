@@ -64,28 +64,30 @@ const BasePassword: FC<BasePasswordProps> = ({
   return (
     <Controller
       {...controllerProps}
-      render={({ field }) => (
-        <TextField
-          {...textField}
-          {...field}
-          error={!!errors[name]}
-          helperText={(errors as any)[name] ? (errors as any)[name].message : null}
-          InputProps={{
-            ...InputProps,
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                  edge="end"
-                >
-                  {type === 'password' ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            )
-          }}
-        />
-      )}
+      render={({ field }) => {
+        return (
+          <TextField
+            {...textField}
+            {...field}
+            error={!!errors[name]}
+            helperText={(errors as any)[name] ? (errors as any)[name].message : null}
+            InputProps={{
+              ...InputProps,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={handleClickShowPassword}
+                    onMouseDown={handleMouseDownPassword}
+                    edge="end"
+                  >
+                    {type === 'password' ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
+          />
+        )
+      }}
     />
   )
 }

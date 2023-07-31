@@ -2,7 +2,6 @@
   "extends": "@ocommerce/tsconfig/react-library.json",
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
-    "jsxImportSource": "@emotion/react",
     "outDir": "dist",
     "declarationMap": false,
     "sourceMap": false

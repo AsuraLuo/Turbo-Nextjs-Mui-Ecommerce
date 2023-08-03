@@ -4,9 +4,6 @@ importers:
 
   .:
     dependencies:
-      '@emotion/babel-plugin':
-        specifier: ^11.11.0
-        version: 11.11.0
       '@emotion/cache':
         specifier: ^11.10.5
         version: 11.10.5

@@ -73,6 +73,26 @@ module.exports = (pkg = {}) => {
       if (!isServer) {
         // Attention: It must be placed after terserplugin, otherwise the generated annotation description will be cleared by terserplugin or other compression plug-ins
         if (isProd && pkg) {
+          config.optimization.splitChunks.cacheGroups = {
+            sentry: {
+              chunks: 'all',
+              name: 'sentry',
+              test: /[\\/]node_modules[\\/](@sentry\/core|@sentry\/replay|@sentry\/browser|@sentry\/utils)[\\/]/,
+              priority: 100,
+              enforce: true,
+              reuseExistingChunk: true
+            },
+            runtime: {
+              chunks: 'all',
+              name: 'runtime',
+              test: /[\\/]node_modules[\\/](redux-logger)[\\/]/,
+              priority: 90,
+              enforce: true,
+              reuseExistingChunk: true
+            },
+            ...config.optimization.splitChunks.cacheGroups
+          }
+
           // Automatic injection of copyright annotation information
           config.optimization.minimizer.push(
             new BannerPlugin({

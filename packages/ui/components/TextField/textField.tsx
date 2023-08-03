@@ -4,12 +4,18 @@ import type { TextFieldProps } from '@mui/material/TextField'
 
 import { useInputSpace } from './useInputSpace'
 
+type MuiTextFieldProps = TextFieldProps & {
+  tirmSpace?: boolean
+}
+
 const MuiTextField: any = forwardRef(
-  ({ children, ...props }: TextFieldProps, ref: React.Ref<any>) => {
-    const { inputSpaceEvent } = useInputSpace(props)
+  ({ children, ...props }: MuiTextFieldProps, ref: React.Ref<any>) => {
+    const { tirmSpace, ...rest } = props
+    const { inputSpaceEvent } = useInputSpace(rest)
+    const inputProps = tirmSpace ? inputSpaceEvent : rest
 
     return (
-      <TextField ref={ref} {...inputSpaceEvent}>
+      <TextField ref={ref} {...inputProps}>
         {children}
       </TextField>
     )

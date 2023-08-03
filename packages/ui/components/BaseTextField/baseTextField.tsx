@@ -12,6 +12,7 @@ interface BaseTextFieldProps extends StandardTextFieldProps {
   defaultValue?: string
   fullWidth?: boolean
   required?: boolean
+  tirmSpace?: boolean
   validate?: any
   control: any
   errors: FieldErrors
@@ -24,6 +25,7 @@ const BaseTextField: FC<BaseTextFieldProps> = ({
   defaultValue,
   fullWidth = true,
   required = false,
+  tirmSpace = true,
   validate,
   type = 'text',
   ...rest
@@ -58,6 +60,7 @@ const BaseTextField: FC<BaseTextFieldProps> = ({
           <TextField
             {...field}
             {...textField}
+            tirmSpace={tirmSpace}
             // value={value || undefined}
             error={!!errors[name]}
             helperText={(errors as any)[name] ? (errors as any)[name].message : null}

@@ -74,14 +74,16 @@ module.exports = (pkg = {}) => {
         // Attention: It must be placed after terserplugin, otherwise the generated annotation description will be cleared by terserplugin or other compression plug-ins
         if (isProd && pkg) {
           config.optimization.splitChunks.cacheGroups = {
-            sentry: {
-              chunks: 'all',
-              name: 'sentry',
-              test: /[\\/]node_modules[\\/](@sentry\/core|@sentry\/replay|@sentry\/browser|@sentry\/utils)[\\/]/,
-              priority: 100,
-              enforce: true,
-              reuseExistingChunk: true
-            },
+            ...(isSentry && {
+              sentry: {
+                chunks: 'all',
+                name: 'sentry',
+                test: /[\\/]node_modules[\\/](@sentry\/nextjs|@sentry\/core|@sentry\/replay|@sentry\/browser|@sentry\/utils|@sentry-internal\/tracing)[\\/]/,
+                priority: 100,
+                enforce: true,
+                reuseExistingChunk: true
+              }
+            }),
             runtime: {
               chunks: 'all',
               name: 'runtime',

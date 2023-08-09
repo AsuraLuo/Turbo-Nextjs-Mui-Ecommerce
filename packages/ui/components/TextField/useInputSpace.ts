@@ -12,14 +12,12 @@ export const useInputSpace = (props: any) => {
   const handleTrimSpace = useCallback(
     (e: FocusEvent<HTMLInputElement>) => {
       let inputValue = e?.target?.value
-
       if (!(typeof regex === 'boolean' && !regex)) {
         inputValue = inputValue.replace(regex, '')
       }
 
       e.target.value = inputValue
       onChange?.(e)
-
       if (e?.type === 'blur' && typeof onBlur === 'function') {
         onBlur?.(e)
       } else if (e?.type === 'keydown' && typeof onKeyDown === 'function') {

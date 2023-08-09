@@ -1,11 +1,11 @@
 import {
-  BaseAutoComplete,
+  // BaseAutoComplete,
   // BaseTextField,
   // BaseCheckbox,
   // BaseFileUpload,
   // BaseImagesUpload,
   // BaseInputNumber,
-  // BasePassword,
+  BasePassword,
   // BaseRadioGroup,
   // BaseSwatchRadio,
   // BaseSelect,
@@ -31,7 +31,7 @@ const LoginPage = () => {
     // handleValidEmail,
     // handleValidPassword
   } = useLoginPage()
-  const options: any[] = ['admin@qq.com', 'test@qq.com', 'pwa@qq.com']
+  // const options: any[] = ['admin@qq.com', 'test@qq.com', 'pwa@qq.com']
 
   const validEmail = (value: string) => {
     const regexp: RegExp =
@@ -41,10 +41,14 @@ const LoginPage = () => {
     return regexp.test(value) || 'Please enter a valid email address.'
   }
 
+  const hanldeOnBlur = (e: any) => {
+    console.info(e)
+  }
+
   return (
     <StyledLoginPage>
       <form noValidate onSubmit={handleFormSubmit}>
-        <BaseAutoComplete
+        {/* <BaseAutoComplete
           name="email"
           label="Search input"
           required
@@ -52,7 +56,7 @@ const LoginPage = () => {
           control={control}
           errors={errors}
           validate={validEmail}
-        />
+        /> */}
         {/* <BaseTextField
           name="email"
           label="Email"
@@ -62,15 +66,19 @@ const LoginPage = () => {
           validate={validEmail}
           validate={handleValidEmail}
         /> */}
-        {/* <BasePassword
+        <BasePassword
           name="password"
           label="Password"
           required
           control={control}
           errors={errors}
-          // validate={handleValidPassword}
+          validate={validEmail}
+          onBlur={hanldeOnBlur}
+          // inputProps={{
+          //   onBlur: hanldeOnBlur
+          // }}
         />
-        <BaseSelect
+        {/* <BaseSelect
           name="option"
           label="Option"
           // required

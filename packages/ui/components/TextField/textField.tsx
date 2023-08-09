@@ -10,7 +10,7 @@ type MuiTextFieldProps = TextFieldProps & {
 
 const MuiTextField: any = forwardRef(
   ({ children, ...props }: MuiTextFieldProps, ref: React.Ref<any>) => {
-    const { tirmSpace, ...rest } = props
+    const { tirmSpace = true, ...rest } = props
     const { inputSpaceEvent } = useInputSpace(rest)
     const inputProps = tirmSpace ? inputSpaceEvent : rest
 

@@ -7,6 +7,7 @@ import { theme } from '@config/theme'
 import { CssBaseline, CurrentLocale, INextPerformance } from '@ocommerce/ui'
 
 import GlobalStyled from '@components/GlobalStyled'
+import Footer from '@components/Footer'
 import { StyledMain } from './styled'
 
 interface AppShellProps {
@@ -37,6 +38,7 @@ const AppShell: FC<AppShellProps> = ({ children, cache }) => {
         <CurrentLocale />
         <GlobalStyled />
         <StyledMain>{children}</StyledMain>
+        <Footer />
         <INextPerformance />
       </ThemeProvider>
     </CacheProvider>

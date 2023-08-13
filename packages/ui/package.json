@@ -4,6 +4,12 @@
   "main": "components/index.ts",
   "license": "MIT",
   "description": "Ocommerce Ui Base On Mui",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "clean": "rm -rf dist",
     "dev": "father dev",
@@ -12,12 +18,6 @@
     "doctor": "father doctor",
     "prepublishOnly": "father doctor && pnpm run build",
     "lint": "TIMING=1 eslint \"**/*.ts*\""
-  },
-  "files": [
-    "dist"
-  ],
-  "publishConfig": {
-    "access": "public"
   },
   "dependencies": {
     "@mui/x-date-pickers": "^5.0.16",

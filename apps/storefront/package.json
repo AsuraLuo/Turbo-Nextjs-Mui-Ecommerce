@@ -15,9 +15,7 @@
     "lint": "next lint",
     "stop:ocommerce": "./node_modules/pm2/bin/pm2 stop all",
     "delete:ocommerce": "./node_modules/pm2/bin/pm2 delete all",
-    "deploy:ocommerce": "./node_modules/pm2/bin/pm2 reload pm2.config.js",
-    "mkcert:prepare": "mkcert -install",
-    "mkcert:genrate": "mkcert localhost 127.0.0.1 ::1"
+    "deploy:ocommerce": "./node_modules/pm2/bin/pm2 reload pm2.config.js"
   },
   "dependencies": {
     "@koa/router": "^12.0.0",

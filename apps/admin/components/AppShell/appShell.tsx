@@ -1,23 +1,14 @@
-import { CssBaseline, ICollapseView } from '@ocommerce/ui'
+import { CssBaseline } from '@ocommerce/ui'
 
 import Header from '@/components/Header'
+import LoginPage from '@/components/LoginPage'
 
 const AppShell = () => {
   return (
     <>
       <CssBaseline />
       <Header />
-      <div>
-        <ICollapseView size={100}>
-          <span>AppShell</span>
-          <div>123</div>
-          <span>AppShell</span>
-          <div>123</div>
-        </ICollapseView>
-      </div>
-      <div>
-        <p>Footer</p>
-      </div>
+      <LoginPage />
     </>
   )
 }

@@ -1,15 +1,18 @@
 import { memo } from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
-import { TextField } from '@mui/material'
+import TextField from '@mui/material/TextField'
 import type { FC } from 'react'
+import type { ControllerProps } from 'react-hook-form'
+import type { TextFieldProps } from '@mui/material/TextField'
 
-interface ITextFiledProps {
+interface IFormInputProps {
   name: string
-  control: any
   required?: boolean
+  controllerProps?: ControllerProps
+  textFiledProps?: TextFieldProps
 }
 
-const ITextFiled: FC<ITextFiledProps> = ({ name, required = false }) => {
+const IFormInput: FC<IFormInputProps> = ({ name, required = false }) => {
   const { control } = useFormContext<any>()
 
   return (
@@ -32,4 +35,4 @@ const ITextFiled: FC<ITextFiledProps> = ({ name, required = false }) => {
   )
 }
 
-export default memo(ITextFiled)
+export default memo(IFormInput)

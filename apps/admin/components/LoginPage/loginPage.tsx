@@ -1,8 +1,8 @@
-import { FormProvider, useForm } from 'react-hook-form'
 import { Button } from '@mui/material'
 import type { SubmitHandler } from 'react-hook-form'
 
-import ITextFiled from '@/components/ITextFiled'
+import IFormContext from '@/components/IFormContext'
+import ITextFiled from '@/components/IFormInput'
 
 interface IFormInput {
   firstname: string
@@ -10,32 +10,24 @@ interface IFormInput {
 }
 
 const LoginPage = () => {
-  const form = useForm({
-    defaultValues: {
-      firstname: '',
-      lastname: ''
-    }
-  })
-  const { control, handleSubmit } = form
   // const { fields, append, remove } = useFieldArray({
   //   control,
   //   name: 'test'
   // })
 
-  const onSubmit: SubmitHandler<IFormInput> = (data) => {
-    console.error(data)
+  const onFinish: SubmitHandler<IFormInput> = (values: any) => {
+    console.info(values)
   }
 
   return (
-    <FormProvider {...form}>
-      <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <ITextFiled name="firstname" control={control} required />
-        </div>
-        <div>
-          <ITextFiled name="lastname" control={control} required />
-        </div>
-        {/* {fields.map((field, index) => {
+    <IFormContext onFinish={onFinish}>
+      <div>
+        <ITextFiled name="firstname" required />
+      </div>
+      <div>
+        <ITextFiled name="lastname" required />
+      </div>
+      {/* {fields.map((field, index) => {
         const name = `test.${index}.firstname`
         return (
           <div key={field.id}>
@@ -72,11 +64,10 @@ const LoginPage = () => {
         }>
         append
       </Button> */}
-        <Button type="submit">
-          <span>Submit</span>
-        </Button>
-      </form>
-    </FormProvider>
+      <Button type="submit">
+        <span>Submit</span>
+      </Button>
+    </IFormContext>
   )
 }
 

@@ -10,17 +10,22 @@ interface IFormInput {
 }
 
 const LoginPage = () => {
+  const defaultValues: IFormInput = {
+    firstname: '',
+    lastname: ''
+  }
+
   // const { fields, append, remove } = useFieldArray({
   //   control,
   //   name: 'test'
   // })
 
-  const onFinish: SubmitHandler<IFormInput> = (values: any) => {
+  const onFinish: SubmitHandler<IFormInput> = (values) => {
     console.info(values)
   }
 
   return (
-    <IFormContext onFinish={onFinish}>
+    <IFormContext defaultValues={defaultValues} onFinish={onFinish}>
       <div>
         <ITextFiled name="firstname" required />
       </div>

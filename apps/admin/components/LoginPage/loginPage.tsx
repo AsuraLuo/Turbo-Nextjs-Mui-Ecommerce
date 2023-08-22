@@ -2,15 +2,15 @@ import { Button } from '@mui/material'
 import type { SubmitHandler } from 'react-hook-form'
 
 import IFormContext from '@/components/IFormContext'
-import ITextFiled from '@/components/IFormInput'
+import IFormInput from '@/components/IFormInput'
 
-interface IFormInput {
+interface IFormData {
   firstname: string
   lastname: string
 }
 
 const LoginPage = () => {
-  const defaultValues: IFormInput = {
+  const defaultValues: IFormData = {
     firstname: '',
     lastname: ''
   }
@@ -20,17 +20,21 @@ const LoginPage = () => {
   //   name: 'test'
   // })
 
-  const onFinish: SubmitHandler<IFormInput> = (values) => {
+  const onFinish: SubmitHandler<IFormData> = (values) => {
     console.info(values)
   }
 
   return (
-    <IFormContext defaultValues={defaultValues} onFinish={onFinish}>
+    <IFormContext
+      defaultValues={defaultValues}
+      formProps={{ reValidateMode: 'onSubmit' }}
+      onFinish={onFinish}
+    >
       <div>
-        <ITextFiled name="firstname" required />
+        <IFormInput name="firstname" required />
       </div>
       <div>
-        <ITextFiled name="lastname" required />
+        <IFormInput name="lastname" required />
       </div>
       {/* {fields.map((field, index) => {
         const name = `test.${index}.firstname`

@@ -5,18 +5,18 @@ import type { FC } from 'react'
 import type { ControllerProps } from 'react-hook-form'
 import type { TextFieldProps } from '@mui/material/TextField'
 
-interface IFormInputProps {
+interface IFormInputProps extends Omit<TextFieldProps, 'required'> {
   name: string
   required?: boolean
   controllerProps?: ControllerProps
-  textFiledProps?: TextFieldProps
 }
 
-const IFormInput: FC<IFormInputProps> = ({ name, required = false }) => {
+const IFormInput: FC<IFormInputProps> = ({ name, required = false, controllerProps, ...props }) => {
   const { control } = useFormContext<any>()
 
   return (
     <Controller
+      {...controllerProps}
       name={name}
       control={control}
       rules={{ required: 'This field is required.' }}
@@ -24,6 +24,7 @@ const IFormInput: FC<IFormInputProps> = ({ name, required = false }) => {
         const { name: fieldName } = field
         return (
           <TextField
+            {...props}
             {...field}
             required={required}
             error={!!errors[fieldName]}

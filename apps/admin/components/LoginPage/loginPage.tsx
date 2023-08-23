@@ -3,6 +3,7 @@ import type { SubmitHandler } from 'react-hook-form'
 
 import IFormContext from '@/components/IFormContext'
 import IFormInput from '@/components/IFormInput'
+import IFormCheckbox from '@/components/IFormCheckbox'
 
 type IFormValues = {
   firstname: string
@@ -37,6 +38,13 @@ const LoginPage = () => {
       </div>
       <div>
         <IFormInput name="lastname" rules={{ required: true }} />
+      </div>
+      <div>
+        <IFormCheckbox
+          name="agree"
+          rules={{ required: true }}
+          label="Please agree with this conditions."
+        />
       </div>
       {/* {fields.map((field, index) => {
         const name = `test.${index}.firstname`

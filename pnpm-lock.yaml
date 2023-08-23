@@ -71,6 +71,9 @@ importers:
       '@commitlint/config-conventional':
         specifier: ^17.3.0
         version: 17.3.0
+      '@types/lodash-es':
+        specifier: ^4.17.8
+        version: 4.17.8
       '@types/react':
         specifier: ^18.0.26
         version: 18.2.15
@@ -4141,6 +4144,16 @@ packages:
     resolution: {integrity: sha512-S6eHyZyoWCZLNHyy8j0sMW85cPrpByCbGGU2/BO4IzGiI87aHJ92lZh4E9xfsM9DcbCT469/OIqyC0sSJXSIBQ==}
     dependencies:
       '@types/koa': 2.13.5
+    dev: true
+
+  /@types/lodash-es@4.17.8:
+    resolution: {integrity: sha512-euY3XQcZmIzSy7YH5+Unb3b2X12Wtk54YWINBvvGQ5SmMvwb11JQskGsfkH/5HXK77Kr8GF0wkVDIxzAisWtog==}
+    dependencies:
+      '@types/lodash': 4.14.197
+    dev: true
+
+  /@types/lodash@4.14.197:
+    resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
     dev: true
 
   /@types/mdast@3.0.12:

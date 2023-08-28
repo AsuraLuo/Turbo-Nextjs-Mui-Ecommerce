@@ -7,11 +7,13 @@ import IFormContainer from '@/components/IFormContainer'
 import ITextField from '@/components/ITextField'
 import IFormCheckbox from '@/components/IFormCheckbox'
 import IFormRadioGroup from '@/components/IFormRadioGroup'
+import IFormAutoComplete from '@/components/IFormAutoComplete'
 
 type IFormValues = {
   firstname: string
   lastname: string
   gender: string
+  choose: any
   agree: boolean
 }
 
@@ -44,6 +46,31 @@ const LoginPage = () => {
       </div>
       <div>
         <ITextField type="email" name="lastname" label="Last Name" required />
+      </div>
+      <div>
+        <IFormAutoComplete
+          label="Choose"
+          name="choose"
+          options={[
+            {
+              id: 1,
+              label: 'First'
+            },
+            {
+              id: 2,
+              label: 'Second'
+            },
+            {
+              id: 3,
+              label: 'Third'
+            },
+            {
+              id: 4,
+              label: 'Four'
+            }
+          ]}
+          required
+        />
       </div>
       <div>
         <IFormRadioGroup

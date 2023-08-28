@@ -1,2 +1,2 @@
-export { default as ITextField } from './iTextField'
+export { default } from './iTextField'
 export type { ITextFieldProps } from './iTextField'

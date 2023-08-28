@@ -1,71 +1,79 @@
-import { memo } from 'react'
-import { Controller, useFormContext } from 'react-hook-form'
-import { Checkbox, FormControl, FormGroup, FormControlLabel, FormHelperText } from '@mui/material'
-import type { CheckboxProps } from '@mui/material/Checkbox'
-import type { FC, ChangeEvent } from 'react'
-import type { ControllerProps } from 'react-hook-form'
+import { Controller } from 'react-hook-form'
+import { Checkbox, FormControl, FormControlLabel, FormGroup, FormHelperText } from '@mui/material'
+import type { ReactNode } from 'react'
+import type { CheckboxProps, FormControlLabelProps } from '@mui/material'
+import type { Control, ControllerProps, FieldError, Path } from 'react-hook-form'
+import type { FieldValues } from 'react-hook-form/dist/types/fields'
 
-type ControllerRules = ControllerProps['rules']
+import { useIFormError } from '../IFormError'
 
-type InputRules = Exclude<ControllerRules, 'required'> & {
-  required?: boolean
+export type IFormCheckboxProps<T extends FieldValues> = Omit<CheckboxProps, 'name'> & {
+  name: Path<T>
+  label?: FormControlLabelProps['label']
+  labelProps?: Omit<FormControlLabelProps, 'label' | 'control'>
+  helperText?: string
+  control?: Control<T>
+  validation?: ControllerProps<T>['rules']
+  parseError?: (error: FieldError) => ReactNode
 }
 
-interface IFormCheckboxProps extends Omit<CheckboxProps, 'required'> {
-  name: string
-  label?: string
-  rules?: InputRules
-  controllerProps?: Omit<ControllerProps, 'name' | 'control' | 'rules'>
-}
-
-const IFormCheckbox: FC<IFormCheckboxProps> = ({
+const IFormCheckbox = <TFieldValues extends FieldValues>({
   name,
-  label = '',
-  rules = {},
-  controllerProps,
-  ...props
-}) => {
-  const { control } = useFormContext<any>()
-  const { required = false, ...rest } = rules
-  const controlRules: ControllerRules = {
-    required: required && 'This field is required.',
-    ...rest
-  }
+  label,
+  labelProps,
+  helperText,
+  required,
+  control,
+  validation = {},
+  parseError,
+  ...rest
+}: IFormCheckboxProps<TFieldValues>) => {
+  const errorMsgFn = useIFormError()
+  const customErrorFn: Function = parseError || errorMsgFn
 
-  const handleOnChange = (event: ChangeEvent<HTMLInputElement>, onChange: any) => {
-    const target: HTMLInputElement = event.target as HTMLInputElement
-    onChange(target.checked)
-    props?.onChange?.(event, target.checked)
+  if (required && !validation.required) {
+    validation.required = 'This field is required'
   }
 
   return (
     <Controller
-      {...controllerProps}
       name={name}
+      rules={validation}
       control={control}
-      rules={controlRules}
-      render={({ field, formState: { errors } }) => {
-        const { name: fieldName, value, onChange, ...params } = field
+      render={({ field: { value, onChange }, fieldState: { error } }) => {
+        const message = typeof customErrorFn === 'function' ? customErrorFn(error) : error?.message
+        const parsedHelperText = error ? message : helperText
         return (
-          <FormControl required={required} error={!!errors}>
+          <FormControl required={required} error={!!error}>
             <FormGroup row>
               <FormControlLabel
-                label={label}
+                {...labelProps}
+                label={label || ''}
                 control={
                   <Checkbox
-                    {...props}
-                    {...params}
-                    required={required}
+                    {...rest}
+                    color={rest.color || 'primary'}
+                    sx={[
+                      ...(Array.isArray(rest.sx) ? rest.sx : [rest.sx]),
+                      {
+                        color: error ? 'error.main' : undefined
+                      }
+                    ]}
                     value={value}
                     checked={!!value}
-                    onChange={(event) => handleOnChange(event, onChange)}
+                    onChange={(ev) => {
+                      onChange(!value)
+                      if (typeof rest.onChange === 'function') {
+                        rest.onChange(ev, !value)
+                      }
+                    }}
                   />
                 }
               />
             </FormGroup>
-            <FormHelperText error={!!errors[fieldName]}>
-              {(errors as any)[fieldName]?.message ?? null}
-            </FormHelperText>
+            {parsedHelperText && (
+              <FormHelperText error={!!error}>{parsedHelperText}</FormHelperText>
+            )}
           </FormControl>
         )
       }}
@@ -73,4 +81,4 @@ const IFormCheckbox: FC<IFormCheckboxProps> = ({
   )
 }
 
-export default memo(IFormCheckbox)
+export default IFormCheckbox

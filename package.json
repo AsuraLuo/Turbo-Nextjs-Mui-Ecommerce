@@ -36,6 +36,7 @@
     "@mui/material": "^5.11.2",
     "@mui/styles": "^5.11.2",
     "@mui/system": "^5.13.6",
+    "@mui/x-date-pickers": "^6.12.1",
     "@reduxjs/toolkit": "^1.9.1",
     "@sentry/nextjs": "^7.54.0",
     "clsx": "^1.2.1",

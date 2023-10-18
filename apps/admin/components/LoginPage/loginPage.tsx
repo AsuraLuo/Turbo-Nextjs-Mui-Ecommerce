@@ -1,50 +1,96 @@
+import { useEffect } from 'react'
 import { Button } from '@mui/material'
+import { useForm } from 'react-hook-form'
 import type { SubmitHandler } from 'react-hook-form'
 
-import IFormContext from '@/components/IFormContext'
-import IFormInput from '@/components/IFormInput'
+import IFormContainer from '@/components/IFormContainer'
+import ITextField from '@/components/ITextField'
 import IFormCheckbox from '@/components/IFormCheckbox'
+import IFormRadioGroup from '@/components/IFormRadioGroup'
+import IFormAutoComplete from '@/components/IFormAutoComplete'
 
 type IFormValues = {
   firstname: string
   lastname: string
+  gender: string
+  choose: any
+  agree: boolean
 }
 
 const LoginPage = () => {
-  const defaultValues: IFormValues = {
-    firstname: '',
-    lastname: ''
-  }
+  const formContext = useForm<IFormValues>({
+    defaultValues: {
+      firstname: '',
+      lastname: '',
+      gender: '',
+      agree: false
+    }
+  })
 
   // const { fields, append, remove } = useFieldArray({
   //   control,
   //   name: 'test'
   // })
-  const validEmail = (value: string) => {
-    const regexp: RegExp =
-      /^([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9,!\#\$%&'\*\+\/=\?\^_`\{\|\}~-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*@([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z0-9-]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*\.(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]){2,})$/i
-
-    return regexp.test(value) || 'Please enter a valid email address.'
-  }
-
   const onFinish: SubmitHandler<IFormValues> = (values) => {
     console.info(values)
   }
 
+  useEffect(() => {
+    formContext.setValue('firstname', '123')
+  }, [formContext])
+
   return (
-    <IFormContext defaultValues={defaultValues} onFinish={onFinish}>
+    <IFormContainer formContext={formContext} onSuccess={onFinish}>
       <div>
-        <IFormInput name="firstname" rules={{ required: true, validate: validEmail }} />
+        <ITextField name="firstname" label="First Name" required />
       </div>
       <div>
-        <IFormInput name="lastname" rules={{ required: true }} />
+        <ITextField type="email" name="lastname" label="Last Name" required />
       </div>
       <div>
-        <IFormCheckbox
-          name="agree"
-          rules={{ required: true }}
-          label="Please agree with this conditions."
+        <IFormAutoComplete
+          label="Choose"
+          name="choose"
+          options={[
+            {
+              id: 1,
+              label: 'First'
+            },
+            {
+              id: 2,
+              label: 'Second'
+            },
+            {
+              id: 3,
+              label: 'Third'
+            },
+            {
+              id: 4,
+              label: 'Four'
+            }
+          ]}
+          required
         />
+      </div>
+      <div>
+        <IFormRadioGroup
+          name="gender"
+          label="Gender"
+          options={[
+            {
+              id: 'man',
+              label: 'Man'
+            },
+            {
+              id: 'women',
+              label: 'Women'
+            }
+          ]}
+          required
+        />
+      </div>
+      <div>
+        <IFormCheckbox name="agree" label="agree with this conditions" required />
       </div>
       {/* {fields.map((field, index) => {
         const name = `test.${index}.firstname`
@@ -86,7 +132,7 @@ const LoginPage = () => {
       <Button type="submit">
         <span>Submit</span>
       </Button>
-    </IFormContext>
+    </IFormContainer>
   )
 }
 

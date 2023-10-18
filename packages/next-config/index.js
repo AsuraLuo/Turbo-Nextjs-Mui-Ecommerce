@@ -9,6 +9,7 @@ const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
 const isSentry = process.env.REACT_SENTRY_ENABLE === '1'
 const CDN_URL = process.env.REACT_APP_CDN_URL || undefined
+const timeStamp = new Date().getTime()
 
 module.exports = (pkg = {}) => {
   /**
@@ -69,6 +70,27 @@ module.exports = (pkg = {}) => {
       ]
     },
     webpack: (config, { isServer, webpack }) => {
+      // Js trunk time hash
+      if (isProd) {
+        if (config.output.filename.startsWith('static')) {
+          if (config.output.filename === 'static/chunks/[name]-[contenthash].js') {
+            config.output.filename = `static/chunks/[name]-[contenthash]-${timeStamp}.js`
+          }
+
+          if (config.output.chunkFilename === 'static/chunks/[name].[contenthash].js') {
+            config.output.chunkFilename = `static/chunks/[name]-[contenthash]-${timeStamp}.js`
+          }
+        }
+
+        config.plugins.map((plugin) => {
+          if (plugin.constructor.name === 'CopyFilePlugin') {
+            plugin.name = `static/chunks/polyfills-[hash]-${timeStamp}.js`
+          }
+
+          return plugin
+        })
+      }
+
       // Client webpack conifg
       if (!isServer) {
         // Attention: It must be placed after terserplugin, otherwise the generated annotation description will be cleared by terserplugin or other compression plug-ins

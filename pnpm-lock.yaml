@@ -61,6 +61,9 @@ importers:
       react-redux:
         specifier: ^8.0.5
         version: 8.0.5(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
+      react-scroll:
+        specifier: ^1.8.9
+        version: 1.8.9(react-dom@18.2.0)(react@18.2.0)
       redux-logger:
         specifier: ^3.0.6
         version: 3.0.6
@@ -83,6 +86,9 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.10
         version: 18.2.7
+      '@types/react-scroll':
+        specifier: ^1.8.7
+        version: 1.8.7
       cz-customizable:
         specifier: ^7.0.0
         version: 7.0.0
@@ -131,6 +137,9 @@ importers:
       '@vitejs/plugin-react-swc':
         specifier: ^3.3.2
         version: 3.3.2(vite@4.4.5)
+      next-redux-wrapper:
+        specifier: ^8.1.0
+        version: 8.1.0(next@13.1.1)(react-redux@8.0.5)(react@18.2.0)
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -192,6 +201,9 @@ importers:
       next:
         specifier: ^13.1.1
         version: 13.1.1(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
+      next-redux-wrapper:
+        specifier: ^8.1.0
+        version: 8.1.0(next@13.1.1)(react-redux@8.0.5)(react@18.2.0)
       nookies:
         specifier: ^2.5.2
         version: 2.5.2
@@ -4298,6 +4310,12 @@ packages:
 
   /@types/react-lazyload@3.2.0:
     resolution: {integrity: sha512-4+r+z8Cf7L/mgxA1vl5uHx5GS/8gY2jqq2p5r5WCm+nUsg9KilwQ+8uaJA3EUlLj57AOzOfGGwwRJ5LOVl8fwA==}
+    dependencies:
+      '@types/react': 18.2.15
+    dev: true
+
+  /@types/react-scroll@1.8.7:
+    resolution: {integrity: sha512-BB8g+hQL7OtBPWg/NcES6p5u6vduZonGl1BxrsGUwcefE53pfI0pFDd1lRFndgEUE6whYdFfhD+j0sZZT/6brQ==}
     dependencies:
       '@types/react': 18.2.15
     dev: true
@@ -9244,6 +9262,10 @@ packages:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
     dev: true
 
+  /lodash.throttle@4.1.1:
+    resolution: {integrity: sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==}
+    dev: false
+
   /lodash.truncate@4.4.2:
     resolution: {integrity: sha512-jttmRe7bRse52OsWIMDLaXxWqRAmtIUccAQ3garviCqJjafXOfNMO0yMfNpdD6zbGaTU0P5Nz7e7gAT6cKmJRw==}
     dev: true
@@ -9627,6 +9649,18 @@ packages:
       - supports-color
       - uglify-js
       - webpack
+    dev: false
+
+  /next-redux-wrapper@8.1.0(next@13.1.1)(react-redux@8.0.5)(react@18.2.0):
+    resolution: {integrity: sha512-2hIau0hcI6uQszOtrvAFqgc0NkZegKYhBB7ZAKiG3jk7zfuQb4E7OV9jfxViqqojh3SEHdnFfPkN9KErttUKuw==}
+    peerDependencies:
+      next: '>=9'
+      react: '*'
+      react-redux: '*'
+    dependencies:
+      next: 13.1.1(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-redux: 8.0.5(@types/react-dom@18.2.7)(@types/react@18.2.15)(react-dom@18.2.0)(react@18.2.0)(redux@4.2.1)
     dev: false
 
   /next@13.1.1(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0):
@@ -11182,6 +11216,18 @@ packages:
     dependencies:
       '@remix-run/router': 1.4.0
       react: 18.2.0
+    dev: false
+
+  /react-scroll@1.8.9(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-9m7ztraiX/l6L7erzYAD3fhnveNckei6/NkWfqwN2e0FRdoE2W6Pk4oi2Nah7mWpPCPAeIgegfaqZACTimPOwg==}
+    peerDependencies:
+      react: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^15.5.4 || ^16.0.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      lodash.throttle: 4.1.1
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /react-slick@0.29.0(react-dom@18.2.0)(react@18.2.0):

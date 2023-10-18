@@ -1,7 +1,9 @@
-const withPWA = require('next-pwa')
-const nextCache = require('next-pwa/cache')
-const withSentry = require('@sentry/nextjs')
+const fs = require('fs')
 const dateformat = require('dateformat')
+const withPWA = require('next-pwa')
+const nextBuildId = require('next-build-id')
+const withSentry = require('@sentry/nextjs')
+const nextCache = require('next-pwa/cache')
 
 const BannerPlugin = require('./banner')
 
@@ -9,9 +11,8 @@ const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
 const isSentry = process.env.REACT_SENTRY_ENABLE === '1'
 const CDN_URL = process.env.REACT_APP_CDN_URL || undefined
-const timeStamp = new Date().getTime()
 
-module.exports = (pkg = {}) => {
+module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
   /**
    * @type {import('next').NextConfig}
    */
@@ -57,6 +58,27 @@ module.exports = (pkg = {}) => {
     typescript: {
       ignoreBuildErrors: isProd
     },
+    httpAgentOptions: {
+      keepAlive: true
+    },
+    ...rest,
+    images: {
+      remotePatterns: [
+        {
+          protocol: 'http',
+          hostname: '**'
+        },
+        {
+          protocol: 'https',
+          hostname: '**'
+        }
+      ]
+    },
+    generateBuildId: async () => {
+      const commitId = await nextBuildId({ dir })
+      const trunk = commitId.substring(0, 16)
+      return `${trunk}_${timeStamp.toString()}`
+    },
     async rewrites() {
       return [
         {
@@ -69,7 +91,22 @@ module.exports = (pkg = {}) => {
         }
       ]
     },
-    webpack: (config, { isServer, webpack }) => {
+    webpack: (config, { buildId, isServer, webpack }) => {
+      config.module.rules.push({
+        test: /\.svg$/i,
+        issuer: /\.[jt]sx?$/,
+        use: ['@svgr/webpack']
+      })
+
+      // Write buildId to the version controll file
+      fs.writeFileSync(
+        'public/version.json',
+        JSON.stringify({
+          version: buildId,
+          timeStamp
+        })
+      )
+
       // Js trunk time hash
       if (isProd) {
         if (config.output.filename.startsWith('static')) {
@@ -162,15 +199,16 @@ module.exports = (pkg = {}) => {
     })
     plugins.push(
       withPWA({
-        disable: false,
+        disable: !isProd,
         dest: 'public',
+        sw: `/sw.js?v=${timeStamp}`,
         register: true,
         skipWaiting: true,
         reloadOnOnline: true,
         cacheStartUrl: false,
         dynamicStartUrl: true,
         buildExcludes: [/middleware-manifest\.json$/],
-        publicExcludes: ['!robots.txt'],
+        publicExcludes: ['!robots.txt', '!version.json'],
         runtimeCaching
       })
     )

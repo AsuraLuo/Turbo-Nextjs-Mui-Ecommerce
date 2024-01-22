@@ -9,7 +9,7 @@ const BannerPlugin = require('./banner')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
-const isSentry = process.env.REACT_SENTRY_ENABLE === '1'
+const isSentry = process.env.NEXT_PUBLIC_SENTRY_ENABLE === '1'
 const CDN_URL = process.env.REACT_APP_CDN_URL || undefined
 
 module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
@@ -216,23 +216,19 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
 
   if (isSentry) {
     const sentryWebpackPluginOptions = {
-      // Additional config options for the Sentry Webpack plugin. Keep in mind that
-      org: 'example-org',
-      project: 'example-project',
+      org: process.env.NEXT_PUBLIC_SENTRY_ORG_NAME,
+      project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_NAME,
       // An auth token is required for uploading source maps.
       // You can get an auth token from https://sentry.io/settings/account/api/auth-tokens/
       // The token must have `project:releases` and `org:read` scopes for uploading source maps
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-      silent: true // Suppresses all logs
-      // For all available options, see:
-      // https://github.com/getsentry/sentry-webpack-plugin#options.
+      authToken: process.env.NEXT_PUBLIC_SENTRY_AUTH_TOKEN,
+      silent: true
     }
     plugins.push((config) =>
       withSentry.withSentryConfig(
         {
           ...config,
           sentry: {
-            // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/#use-hidden-source-map
             hideSourceMaps: true,
             disableLogger: false,
             automaticVercelMonitors: false,

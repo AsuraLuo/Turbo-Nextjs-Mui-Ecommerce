@@ -1,18 +1,16 @@
-import { captureUnderscoreErrorException } from '@sentry/nextjs'
 import NextErrorComponent from 'next/error'
-import type { ErrorProps } from 'next/error'
+import * as Sentry from '@sentry/nextjs'
 
-const ErrorComponent = ({ statusCode }: ErrorProps) => {
-  return <NextErrorComponent statusCode={statusCode} />
-}
+// eslint-disable-next-line react/destructuring-assignment
+const ErrorPage = (props: any) => <NextErrorComponent statusCode={props.statusCode} />
 
-ErrorComponent.getInitialProps = async (contextData) => {
+ErrorPage.getInitialProps = async (context: any) => {
   // In case this is running in a serverless function, await this in order to give Sentry
   // time to send the error before the lambda exits
-  await captureUnderscoreErrorException(contextData)
+  await Sentry.captureUnderscoreErrorException(context)
 
   // This will contain the status code of the response
-  return NextErrorComponent.getInitialProps(contextData)
+  return NextErrorComponent.getInitialProps(context)
 }
 
-export default ErrorComponent
+export default ErrorPage

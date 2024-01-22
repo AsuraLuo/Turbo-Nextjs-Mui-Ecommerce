@@ -6,11 +6,14 @@ const withSentry = require('@sentry/nextjs')
 const nextCache = require('next-pwa/cache')
 
 const BannerPlugin = require('./banner')
+const validatedRelease = require('./release')
 
 const isProd = process.env.NODE_ENV === 'production'
 const isAnalyzer = process.env.REACT_APP_BUNDLE_VISUALIZE === '1'
 const isSentry = process.env.NEXT_PUBLIC_SENTRY_ENABLE === '1'
 const CDN_URL = process.env.REACT_APP_CDN_URL || undefined
+const release = process.env.NEXT_PUBLIC_SENTRY_RELEASE ?? 'v1.0.0'
+const canCreateSentryRelease = validatedRelease(release)
 
 module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
   /**
@@ -214,7 +217,7 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
   //   )
   // }
 
-  if (isSentry) {
+  if (isSentry && canCreateSentryRelease) {
     plugins.push((config) =>
       withSentry.withSentryConfig(
         {
@@ -229,24 +232,15 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
         },
         {
           org: process.env.NEXT_PUBLIC_SENTRY_ORG_NAME,
+          url: process.env.NEXT_PUBLIC_SENTRY_SERVER_URL,
           project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_NAME,
           authToken: process.env.NEXT_PUBLIC_SENTRY_AUTH_TOKEN,
-          url: process.env.NEXT_PUBLIC_SENTRY_SERVER_URL,
-          release: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
           deploy: {
             env: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT
           },
-          // release: {
-          //   name: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
-          //   dist: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
-          //   deploy: {
-          //     env: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT
-          //   },
-          //   inject: true,
-          //   finalize: true,
-          //   cleanArtifacts: true
-          // },
-          urlPrefix: '~/static',
+          release,
+          dist: release,
+          urlPrefix: `~/${release}`,
           debug: true,
           silent: false,
           ignore: ['node_modules']

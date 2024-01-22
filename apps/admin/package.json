@@ -12,6 +12,7 @@
     "@ocommerce/hooks": "workspace:*",
     "@ocommerce/tsconfig": "workspace:*",
     "@ocommerce/ui": "workspace:*",
+    "@sentry/integrations": "^7.94.1",
     "@vitejs/plugin-react-swc": "^3.3.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

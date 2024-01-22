@@ -23,6 +23,7 @@
     "@ocommerce/next-config": "workspace:*",
     "@ocommerce/tsconfig": "workspace:*",
     "@ocommerce/ui": "workspace:*",
+    "@sentry/integrations": "^7.94.1",
     "cross-env": "^7.0.3",
     "http-proxy-middleware": "^2.0.6",
     "koa": "^2.14.1",

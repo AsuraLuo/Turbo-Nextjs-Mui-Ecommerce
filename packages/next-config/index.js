@@ -173,8 +173,8 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
       // Sentry webpack tree shaking
       config.plugins.push(
         new webpack.DefinePlugin({
-          __SENTRY_DEBUG__: false,
-          __SENTRY_TRACING__: false
+          __SENTRY_DEBUG__: true,
+          __SENTRY_TRACING__: true
         })
       )
 
@@ -192,38 +192,29 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
       })
     )
 
-  if (isProd) {
-    // Filter cache api resource
-    const runtimeCaching = nextCache.filter((cache) => {
-      return !(typeof cache.urlPattern === 'function')
-    })
-    plugins.push(
-      withPWA({
-        disable: !isProd,
-        dest: 'public',
-        sw: `/sw.js?v=${timeStamp}`,
-        register: true,
-        skipWaiting: true,
-        reloadOnOnline: true,
-        cacheStartUrl: false,
-        dynamicStartUrl: true,
-        buildExcludes: [/middleware-manifest\.json$/],
-        publicExcludes: ['!robots.txt', '!version.json'],
-        runtimeCaching
-      })
-    )
-  }
+  // if (isProd) {
+  //   // Filter cache api resource
+  //   const runtimeCaching = nextCache.filter((cache) => {
+  //     return !(typeof cache.urlPattern === 'function')
+  //   })
+  //   plugins.push(
+  //     withPWA({
+  //       disable: !isProd,
+  //       dest: 'public',
+  //       sw: `/sw.js?v=${timeStamp}`,
+  //       register: true,
+  //       skipWaiting: true,
+  //       reloadOnOnline: true,
+  //       cacheStartUrl: false,
+  //       dynamicStartUrl: true,
+  //       buildExcludes: [/middleware-manifest\.json$/],
+  //       publicExcludes: ['!robots.txt', '!version.json'],
+  //       runtimeCaching
+  //     })
+  //   )
+  // }
 
   if (isSentry) {
-    const sentryWebpackPluginOptions = {
-      org: process.env.NEXT_PUBLIC_SENTRY_ORG_NAME,
-      project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_NAME,
-      // An auth token is required for uploading source maps.
-      // You can get an auth token from https://sentry.io/settings/account/api/auth-tokens/
-      // The token must have `project:releases` and `org:read` scopes for uploading source maps
-      authToken: process.env.NEXT_PUBLIC_SENTRY_AUTH_TOKEN,
-      silent: true
-    }
     plugins.push((config) =>
       withSentry.withSentryConfig(
         {
@@ -231,12 +222,35 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
           sentry: {
             hideSourceMaps: true,
             disableLogger: false,
-            automaticVercelMonitors: false,
             disableServerWebpackPlugin: true,
-            disableClientWebpackPlugin: true
+            disableClientWebpackPlugin: false,
+            widenClientFileUpload: true
           }
         },
-        sentryWebpackPluginOptions
+        {
+          org: process.env.NEXT_PUBLIC_SENTRY_ORG_NAME,
+          project: process.env.NEXT_PUBLIC_SENTRY_PROJECT_NAME,
+          authToken: process.env.NEXT_PUBLIC_SENTRY_AUTH_TOKEN,
+          url: process.env.NEXT_PUBLIC_SENTRY_SERVER_URL,
+          release: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
+          deploy: {
+            env: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT
+          },
+          // release: {
+          //   name: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
+          //   dist: process.env.NEXT_PUBLIC_SENTRY_RELEASE,
+          //   deploy: {
+          //     env: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT
+          //   },
+          //   inject: true,
+          //   finalize: true,
+          //   cleanArtifacts: true
+          // },
+          urlPrefix: '~/static',
+          debug: true,
+          silent: false,
+          ignore: ['node_modules']
+        }
       )
     )
   }

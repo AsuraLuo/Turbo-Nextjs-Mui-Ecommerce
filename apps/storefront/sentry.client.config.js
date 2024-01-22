@@ -2,7 +2,6 @@
 // The config you add here will be used whenever a page is visited.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 import { init, BrowserTracing, Replay } from '@sentry/nextjs'
-// import { RewriteFrames } from '@sentry/integrations'
 
 const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
 
@@ -26,14 +25,4 @@ init({
       blockAllMedia: true
     })
   ]
-  // beforeSend(event) {
-  //   // Check if it is an exception, if so, show the report dialog
-  //   if (typeof window !== 'undefined' && event.exception) {
-  //     showReportDialog({
-  //       eventId: event.event_id
-  //     })
-  //   }
-
-  //   return event
-  // }
 })

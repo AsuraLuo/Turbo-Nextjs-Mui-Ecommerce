@@ -14,14 +14,11 @@ class BannerPlugin {
         },
         (assets) => {
           Object.entries(assets).forEach(([pathname, source]) => {
-            if (pathname.indexOf('.json') > -1) {
+            if (pathname.endsWith('.json') || pathname.endsWith('.map')) {
               return
             }
 
-            compilation.updateAsset(
-              pathname,
-              new sources.RawSource(this.banner + source.source())
-            )
+            compilation.updateAsset(pathname, new sources.RawSource(this.banner + source.source()))
           })
         }
       )

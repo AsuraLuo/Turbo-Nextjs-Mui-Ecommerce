@@ -10,7 +10,10 @@
       "@provider/*": ["provider/*"],
       "@ocommerce/*": ["packages/*"],
       "@store/*": ["store/*"]
-    }
+    },
+    "sourceRoot": "/",
+    "sourceMap": true,
+    "inlineSources": true
   },
   "include": ["types/next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

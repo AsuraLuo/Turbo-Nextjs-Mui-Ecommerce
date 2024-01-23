@@ -23,11 +23,5 @@ init({
       blockAllMedia: true
     }),
     new RewriteFrames()
-    // iteratee: (frame) => {
-    //   frame.filename = frame.filename.replace(distDir, 'app:///_next')
-    //   // here we are decoding our square brackets []
-    //   frame.filename = decodeURI(frame.filename)
-    //   return frame
-    // }
   ]
 })

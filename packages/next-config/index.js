@@ -1,9 +1,9 @@
 const fs = require('fs')
 const dateformat = require('dateformat')
-const withPWA = require('next-pwa')
+// const withPWA = require('next-pwa')
 const nextBuildId = require('next-build-id')
 const withSentry = require('@sentry/nextjs')
-const nextCache = require('next-pwa/cache')
+// const nextCache = require('next-pwa/cache')
 
 const BannerPlugin = require('./banner')
 const validatedRelease = require('./release')
@@ -223,7 +223,7 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
         {
           ...config,
           sentry: {
-            hideSourceMaps: true,
+            // hideSourceMaps: true,
             disableLogger: false,
             disableServerWebpackPlugin: true,
             disableClientWebpackPlugin: false,
@@ -240,7 +240,9 @@ module.exports = ({ pkg = {}, dir = __dirname, timeStamp = 0, ...rest }) => {
           },
           release,
           dist: release,
-          urlPrefix: `~/${release}`,
+          include: '.next/static/',
+          // urlPrefix: `~/${release}/_next/static`,
+          urlPrefix: '~/_next',
           debug: true,
           silent: false,
           ignore: ['node_modules']
